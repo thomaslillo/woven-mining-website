@@ -1,0 +1,229 @@
+/* =============================================================
+   Woven Mining — Shared Stylesheet
+   ============================================================= */
+
+/* 1. Reset
+   ───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* 2. Design Tokens
+   ───────────────────────────────────────────────────────────── */
+:root {
+  /* Source HSL tokens from wovenmining.ca */
+  --white-hsl:       0, 0%, 100%;
+  --black-hsl:       0, 0%, 0%;
+  --accent-hsl:      26, 13.16%, 55.29%;
+  --lightAccent-hsl: 37.5, 8.7%, 81.96%;
+  --darkAccent-hsl:  23.08, 13.98%, 18.24%;
+
+  /* Derived palette */
+  --bg:           hsl(23, 14%, 8%);          /* deepest background  */
+  --bg2:          hsl(23, 14%, 12%);         /* surface             */
+  --bg3:          hsl(23, 13.98%, 18.24%);   /* elevated = darkAccent */
+  --accent:       hsl(26, 13.16%, 55.29%);   /* warm greige/tan     */
+  --accent-light: hsl(26, 18%, 65%);         /* lighter accent      */
+  --white:        hsl(0, 0%, 100%);
+  --off-white:    hsl(37.5, 8.7%, 81.96%);   /* = lightAccent       */
+  --muted:        hsl(26, 8%, 52%);
+  --border:       hsla(26, 13%, 55%, 0.18);
+
+  /* Layout */
+  --nav-height: 88px;
+  --max-w:      1280px;
+  --font:       'Inter', system-ui, sans-serif;
+}
+
+/* 3. Base
+   ───────────────────────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* 4. Navigation
+   ───────────────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4vw;
+  height: var(--nav-height);
+  background: hsla(23, 14%, 8%, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  text-decoration: none;
+  display: flex; align-items: center;
+}
+
+.nav-logo-img {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 2rem;
+  list-style: none;
+}
+
+.nav-links > li { position: relative; }
+
+.nav-links a {
+  color: var(--off-white); text-decoration: none;
+  font-size: 0.875rem; font-weight: 500;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--white); }
+
+/* Dropdown */
+.dropdown { position: relative; }
+
+.dropdown-menu {
+  display: none;
+  position: absolute; top: calc(100% + 12px); left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; min-width: 180px;
+  padding: 8px 0; list-style: none;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown:hover .dropdown-menu { display: block; }
+
+.dropdown-menu li a {
+  display: block; padding: 10px 18px;
+  font-size: 0.85rem; color: var(--off-white);
+  white-space: nowrap; transition: background .15s, color .15s;
+}
+.dropdown-menu li a:hover { background: rgba(255,255,255,0.06); color: var(--white); }
+
+.dropdown > a::after { content: ' ▾'; font-size: 0.7rem; opacity: .7; }
+
+/* Hamburger button */
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 4px;
+  background: none; border: none;
+}
+.hamburger span {
+  width: 24px; height: 2px; background: var(--white);
+  transition: all .3s; border-radius: 2px;
+  pointer-events: none;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  position: fixed; top: var(--nav-height); left: 0; right: 0;
+  background: var(--bg); z-index: 99;
+  padding: 1.5rem 4vw 2rem;
+  border-bottom: 1px solid var(--border);
+  flex-direction: column;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  display: block; color: var(--off-white); text-decoration: none;
+  font-size: 1rem; font-weight: 500; padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-menu a:last-child { border-bottom: none; }
+
+/* 5. Buttons
+   ───────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 100px;
+  font-size: 0.95rem; font-weight: 600;
+  text-decoration: none; transition: all .22s; cursor: pointer;
+  border: none; font-family: var(--font);
+}
+
+.btn-primary { background: var(--accent); color: var(--white); }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+.btn-outline {
+  background: transparent; color: var(--white);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+.btn-outline:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.05); }
+
+/* 6. Layout & Typography Utilities
+   ───────────────────────────────────────────────────────────── */
+.container { max-width: var(--max-w); margin: 0 auto; }
+
+.section-label {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--accent-light);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800; line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.2rem;
+}
+
+.section-sub {
+  font-size: 1.05rem; color: var(--muted); line-height: 1.7;
+  max-width: 560px;
+}
+
+/* 7. Footer
+   ───────────────────────────────────────────────────────────── */
+footer {
+  background: hsl(23, 14%, 5%); border-top: 1px solid var(--border);
+  padding: 3rem 4vw;
+  text-align: center;
+}
+
+.footer-inner { max-width: var(--max-w); margin: 0 auto; }
+
+.footer-links {
+  display: flex; justify-content: center; gap: 2.5rem;
+  flex-wrap: wrap; margin-bottom: 1.5rem;
+}
+
+.footer-links a {
+  font-size: 0.875rem; color: var(--off-white);
+  text-decoration: none; transition: color .2s;
+}
+.footer-links a:hover { color: var(--white); }
+
+.footer-bottom {
+  display: flex; justify-content: center; gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.footer-bottom p { font-size: 0.8rem; color: var(--muted); }
+
+/* 8. Scroll-reveal Animations
+   ───────────────────────────────────────────────────────────── */
+.fade-up {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+.fade-up-delay-1 { transition-delay: 0.1s; }
+.fade-up-delay-2 { transition-delay: 0.2s; }
+.fade-up-delay-3 { transition-delay: 0.3s; }
+
+/* 9. Responsive
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-links  { display: none; }
+  .hamburger  { display: flex; }
+}
+
+@media (max-width: 480px) {
+  .footer-links { flex-direction: column; gap: 1rem; }
+}

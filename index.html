@@ -3,139 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Woven Mining — answer mining questions faster with data and AI. Serving miners, suppliers, and investors." />
   <title>Woven Mining</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      /* Original site HSL tokens */
-      --white-hsl: 0, 0%, 100%;
-      --black-hsl: 0, 0%, 0%;
-      --accent-hsl: 26, 13.16%, 55.29%;
-      --lightAccent-hsl: 37.5, 8.7%, 81.96%;
-      --darkAccent-hsl: 23.08, 13.98%, 18.24%;
-
-      /* Derived palette */
-      --bg:           hsl(23, 14%, 8%);   /* deeper than darkAccent */
-      --bg2:          hsl(23, 14%, 12%);
-      --bg3:          hsl(23, 13.98%, 18.24%); /* = darkAccent */
-      --accent:       hsl(26, 13.16%, 55.29%); /* warm greige/tan */
-      --accent-light: hsl(26, 18%, 65%);       /* lighter variant */
-      --white:        hsl(0, 0%, 100%);
-      --off-white:    hsl(37.5, 8.7%, 81.96%); /* = lightAccent */
-      --muted:        hsl(26, 8%, 52%);
-      --border:       hsla(26, 13%, 55%, 0.18);
-      --max-w: 1280px;
-      --font: 'Inter', system-ui, sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--white);
-      overflow-x: hidden;
-    }
-
-    /* ─── NAV ─────────────────────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 4vw;
-      height: 88px;
-      background: hsla(23, 14%, 8%, 0.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-size: 1.25rem; font-weight: 800;
-      letter-spacing: -0.02em; color: var(--white);
-      text-decoration: none;
-      display: flex; align-items: center; gap: 10px;
-    }
-
-    .nav-logo svg { width: 28px; height: 28px; }
-
-    .nav-links {
-      display: flex; align-items: center; gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links > li { position: relative; }
-
-    .nav-links a {
-      color: var(--off-white); text-decoration: none;
-      font-size: 0.875rem; font-weight: 500;
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--white); }
-
-    /* dropdown */
-    .dropdown { position: relative; }
-
-    .dropdown-menu {
-      display: none; position: absolute; top: calc(100% + 12px); left: 50%;
-      transform: translateX(-50%);
-      background: hsl(23, 14%, 12%); border: 1px solid var(--border);
-      border-radius: 10px; min-width: 180px;
-      padding: 8px 0; list-style: none;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
-    }
-
-    .dropdown:hover .dropdown-menu { display: block; }
-
-    .dropdown-menu li a {
-      display: block; padding: 10px 18px;
-      font-size: 0.85rem; color: var(--off-white);
-      white-space: nowrap; transition: background .15s, color .15s;
-    }
-    .dropdown-menu li a:hover { background: rgba(255,255,255,0.06); color: var(--white); }
-
-    .dropdown > a::after { content: ' ▾'; font-size: 0.7rem; opacity: .7; }
-
-    .nav-cta {
-      background: var(--accent); color: var(--white) !important;
-      padding: 8px 20px; border-radius: 100px;
-      font-size: 0.85rem !important; font-weight: 600 !important;
-      transition: background .2s !important;
-    }
-    .nav-cta:hover { background: var(--accent-light) !important; }
-
-    /* hamburger */
-    .hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      cursor: pointer; padding: 4px;
-    }
-    .hamburger span {
-      width: 24px; height: 2px; background: var(--white);
-      transition: all .3s; border-radius: 2px;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    .mobile-menu {
-      display: none; position: fixed; top: 88px; left: 0; right: 0;
-      background: var(--bg); z-index: 99; padding: 1.5rem 4vw 2rem;
-      border-bottom: 1px solid var(--border);
-      flex-direction: column; gap: 0;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      display: block; color: var(--off-white); text-decoration: none;
-      font-size: 1rem; font-weight: 500; padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .mobile-menu a:last-child { border-bottom: none; }
-
-    /* ─── HERO ────────────────────────────────────────────── */
+    /* ── Hero ──────────────────────────────────────────────── */
     .hero {
-      min-height: 100vh; padding-top: 88px;
+      min-height: 100vh;
+      padding-top: var(--nav-height);
       display: grid; place-items: center;
       position: relative; overflow: hidden;
     }
@@ -153,18 +31,9 @@
     }
 
     .hero-content {
-      position: relative; z-index: 1;
+      position: relative; z-index: 2;
       text-align: center; padding: 4rem 4vw;
       max-width: 860px;
-    }
-
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--accent-light);
-      margin-bottom: 1.5rem;
-      padding: 6px 16px; border: 1px solid hsla(26, 13%, 55%, 0.4);
-      border-radius: 100px;
     }
 
     .hero h1 {
@@ -179,59 +48,41 @@
     .hero p {
       font-size: clamp(1rem, 2vw, 1.2rem);
       color: var(--muted); line-height: 1.7;
-      max-width: 580px; margin: 0 auto 2.5rem;
+      max-width: 580px; margin: 0 auto;
     }
 
-    .hero-actions {
-      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    /* ── Scroll indicator ─────────────────────────────────── */
+    .scroll-indicator {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%); z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0.4;
+    }
+    .scroll-indicator span {
+      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .scroll-dot {
+      width: 1px; height: 40px; background: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .scroll-dot::after {
+      content: '';
+      position: absolute; top: -100%; left: 0;
+      width: 100%; height: 100%; background: var(--accent-light);
+      animation: scroll-anim 2s ease infinite;
     }
 
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 28px; border-radius: 100px;
-      font-size: 0.95rem; font-weight: 600;
-      text-decoration: none; transition: all .22s; cursor: pointer;
-      border: none; font-family: var(--font);
-    }
-    .btn-primary {
-      background: var(--accent); color: var(--white);
-    }
-    .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
-
-    .btn-outline {
-      background: transparent; color: var(--white);
-      border: 1.5px solid rgba(255,255,255,0.3);
-    }
-    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
-
-    /* ─── SECTION SHARED ─────────────────────────────────── */
-    section { padding: 6rem 4vw; }
-
-    .container { max-width: var(--max-w); margin: 0 auto; }
-
-    .section-label {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--accent-light);
-      margin-bottom: 1rem;
+    @keyframes scroll-anim {
+      0%   { top: -100%; }
+      100% { top: 100%; }
     }
 
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 800; line-height: 1.15;
-      letter-spacing: -0.025em;
-      margin-bottom: 1.2rem;
-    }
-
-    .section-sub {
-      font-size: 1.05rem; color: var(--muted); line-height: 1.7;
-      max-width: 560px;
-    }
-
-    /* ─── MINEGPT SECTION ─────────────────────────────────── */
+    /* ── OreAI signup section ─────────────────────────────── */
     .oreai {
       background: var(--bg2);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+      padding: 6rem 4vw;
     }
 
     .oreai-inner {
@@ -241,24 +92,31 @@
 
     .oreai-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: hsla(26, 13%, 55%, 0.15); border: 1px solid hsla(26, 13%, 55%, 0.35);
-      padding: 6px 16px; border-radius: 100px; margin-bottom: 1.5rem;
+      background: hsla(26, 13%, 55%, 0.15);
+      border: 1px solid hsla(26, 13%, 55%, 0.35);
+      padding: 6px 16px; border-radius: 100px;
+      margin-bottom: 1.5rem;
     }
 
     .oreai-badge .dot {
       width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent-light); animation: pulse 1.8s infinite;
+      background: var(--accent-light);
+      animation: pulse 1.8s infinite;
     }
 
-    .oreai-badge span { font-size: 0.75rem; font-weight: 600; color: var(--accent-light); letter-spacing: 0.08em; text-transform: uppercase; }
+    .oreai-badge span {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent-light);
+    }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: .5; transform: scale(0.85); }
+      50%       { opacity: .5; transform: scale(0.85); }
     }
 
     .signup-form {
       display: flex; gap: 10px; margin-top: 2rem; flex-wrap: wrap;
+      justify-content: center;
     }
 
     .signup-form input {
@@ -269,7 +127,7 @@
       font-family: var(--font); font-size: 0.9rem;
       outline: none; transition: border-color .2s;
     }
-    .signup-form input:focus { border-color: rgba(255,255,255,0.25); }
+    .signup-form input:focus   { border-color: rgba(255,255,255,0.25); }
     .signup-form input::placeholder { color: var(--muted); }
 
     .signup-form button {
@@ -282,14 +140,19 @@
     }
     .signup-form button:hover { background: var(--accent-light); }
 
-    .privacy-note { font-size: 0.75rem; color: var(--muted); margin-top: 10px; }
-
-    /* ─── VALUE PROP ─────────────────────────────────────── */
-    .value-prop { background: var(--bg); }
-
-    .value-prop-header {
-      max-width: var(--max-w); margin: 0 auto 4rem;
+    .signup-success {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 20px; border-radius: 100px;
+      background: hsla(26,13%,55%,0.15);
+      border: 1px solid hsla(26,13%,55%,0.35);
+      color: hsl(26,18%,65%); font-weight: 600; font-size: 0.9rem;
+      justify-content: center;
     }
+
+    /* ── Services ─────────────────────────────────────────── */
+    .value-prop { padding: 6rem 4vw; }
+
+    .value-prop-header { max-width: var(--max-w); margin: 0 auto 4rem; }
 
     .services-grid {
       max-width: var(--max-w); margin: 0 auto;
@@ -303,9 +166,7 @@
       border: 1px solid var(--border);
       position: relative; overflow: hidden;
     }
-
     .service-card:hover { background: var(--bg3); }
-
     .service-card::before {
       content: '';
       position: absolute; bottom: 0; left: 0; right: 0;
@@ -317,20 +178,24 @@
 
     .service-icon {
       width: 44px; height: 44px; border-radius: 10px;
-      background: hsla(26, 13%, 55%, 0.12); border: 1px solid hsla(26, 13%, 55%, 0.28);
-      display: grid; place-items: center; margin-bottom: 1.5rem;
-      font-size: 1.2rem;
+      background: hsla(26, 13%, 55%, 0.12);
+      border: 1px solid hsla(26, 13%, 55%, 0.28);
+      display: grid; place-items: center;
+      margin-bottom: 1.5rem; font-size: 1.2rem;
     }
 
     .service-card h3 {
       font-size: 1rem; font-weight: 700; margin-bottom: 0.8rem;
       letter-spacing: -0.01em;
     }
-
     .service-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
 
-    /* ─── FEATURED SERVICES ──────────────────────────────── */
-    .featured { background: var(--bg2); border-top: 1px solid var(--border); }
+    /* ── Featured cards ───────────────────────────────────── */
+    .featured {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 6rem 4vw;
+    }
 
     .featured-grid {
       max-width: var(--max-w); margin: 0 auto;
@@ -342,13 +207,15 @@
       background: var(--bg3); border: 1px solid var(--border);
       transition: transform .25s, box-shadow .25s;
     }
-    .featured-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    .featured-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
 
     .featured-card-img {
       height: 200px; background-size: cover; background-position: center;
       position: relative;
     }
-
     .featured-card-img::after {
       content: '';
       position: absolute; inset: 0;
@@ -357,31 +224,25 @@
 
     .featured-card-body { padding: 1.75rem; }
 
-    .featured-card-tag {
-      display: inline-block;
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--accent-light);
-      margin-bottom: 0.75rem;
-    }
-
     .featured-card h3 {
       font-size: 1.05rem; font-weight: 700; line-height: 1.4;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1.25rem;
     }
-
-    .featured-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
 
     .featured-card-link {
       display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 1.25rem; font-size: 0.85rem; font-weight: 600;
+      font-size: 0.85rem; font-weight: 600;
       color: var(--white); text-decoration: none;
       transition: gap .2s;
     }
     .featured-card-link:hover { gap: 10px; }
     .featured-card-link::after { content: '→'; }
 
-    /* ─── PODCAST ─────────────────────────────────────────── */
-    .podcast { background: var(--bg); border-top: 1px solid var(--border); }
+    /* ── Podcast ──────────────────────────────────────────── */
+    .podcast {
+      border-top: 1px solid var(--border);
+      padding: 6rem 4vw;
+    }
 
     .podcast-inner {
       max-width: var(--max-w); margin: 0 auto;
@@ -392,13 +253,13 @@
     .podcast-visual {
       background: var(--bg3); border: 1px solid var(--border);
       border-radius: 16px; overflow: hidden;
-      aspect-ratio: 16/9; position: relative;
+      aspect-ratio: 16 / 9; position: relative;
       display: grid; place-items: center;
     }
 
     .podcast-visual-bg {
       position: absolute; inset: 0;
-      background: url('https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=800') center/cover;
+      background: url('https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=800') center / cover;
       opacity: 0.25;
     }
 
@@ -410,107 +271,42 @@
       text-decoration: none;
     }
     .play-btn:hover { transform: scale(1.08); background: var(--accent-light); }
-    .play-btn svg { width: 28px; height: 28px; fill: white; margin-left: 4px; }
+    .play-btn svg   { width: 28px; height: 28px; fill: white; margin-left: 4px; }
 
-    /* ─── FOOTER ─────────────────────────────────────────── */
-    footer {
-      background: hsl(23, 14%, 5%); border-top: 1px solid var(--border);
-      padding: 3rem 4vw;
-      text-align: center;
-    }
+    .podcast-cta { margin-top: 2rem; }
 
-    .footer-inner { max-width: var(--max-w); margin: 0 auto; }
-
-    .footer-links {
-      display: flex; justify-content: center; gap: 2.5rem;
-      flex-wrap: wrap; margin-bottom: 1.5rem;
-    }
-
-    .footer-links a {
-      font-size: 0.875rem; color: var(--off-white);
-      text-decoration: none; transition: color .2s;
-    }
-    .footer-links a:hover { color: var(--white); }
-
-    .footer-bottom {
-      display: flex; justify-content: center; gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-bottom p { font-size: 0.8rem; color: var(--muted); }
-
-    /* ─── ANIMATIONS ─────────────────────────────────────── */
-    .fade-up {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    .fade-up-delay-1 { transition-delay: 0.1s; }
-    .fade-up-delay-2 { transition-delay: 0.2s; }
-    .fade-up-delay-3 { transition-delay: 0.3s; }
-    .fade-up-delay-4 { transition-delay: 0.4s; }
-
-    /* ─── SCROLL INDICATOR ───────────────────────────────── */
-    .scroll-indicator {
-      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      opacity: 0.4;
-    }
-    .scroll-indicator span { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; }
-    .scroll-dot {
-      width: 1px; height: 40px; background: var(--white);
-      position: relative; overflow: hidden;
-    }
-    .scroll-dot::after {
-      content: '';
-      position: absolute; top: -100%; left: 0;
-      width: 100%; height: 100%; background: var(--accent-light);
-      animation: scroll-anim 2s ease infinite;
-    }
-    @keyframes scroll-anim {
-      0% { top: -100%; } 100% { top: 100%; }
-    }
-
-    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    /* ── Responsive ───────────────────────────────────────── */
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .featured-grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-grid  { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-
       .podcast-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .featured-grid { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 480px) {
-      .footer-links { flex-direction: column; gap: 1rem; }
+      .featured-grid  { grid-template-columns: 1fr; }
+      .services-grid  { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ─── NAV ──────────────────────────────────────────────── -->
+<!-- ─── Navigation ───────────────────────────────────────────── -->
 <nav>
   <a href="#" class="nav-logo">
-    <img src="horizontal+White.webp" alt="Woven Mining" style="height:42px;width:auto;display:block;" />
+    <img src="horizontal+White.webp" alt="Woven Mining" class="nav-logo-img" />
   </a>
 
-  <ul class="nav-links">
+  <ul class="nav-links" role="list">
     <li class="dropdown">
       <a href="#">Services</a>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu" role="list">
         <li><a href="#services">Our Services</a></li>
         <li><a href="#">Data Portal Login</a></li>
       </ul>
     </li>
     <li class="dropdown">
       <a href="#">About Us</a>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu" role="list">
         <li><a href="about.html">About</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#">Blog</a></li>
@@ -518,23 +314,26 @@
     </li>
   </ul>
 
-  <div class="hamburger" id="hamburger" aria-label="Menu">
+  <button class="hamburger" id="hamburger"
+          aria-label="Toggle navigation menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu">
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
   <a href="#services">Our Services</a>
   <a href="#">Data Portal Login</a>
   <a href="about.html">About</a>
   <a href="#contact">Contact</a>
   <a href="#">Blog</a>
-</div>
+</nav>
 
-<!-- ─── HERO ──────────────────────────────────────────────── -->
-<section class="hero">
-  <canvas id="hero-canvas"></canvas>
-  <div class="hero-fade"></div>
+<!-- ─── Hero ─────────────────────────────────────────────────── -->
+<section class="hero js-reveal-immediate">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-fade" aria-hidden="true"></div>
 
   <div class="hero-content">
     <h1 class="fade-up">
@@ -545,16 +344,16 @@
     </p>
   </div>
 
-  <div class="scroll-indicator">
+  <div class="scroll-indicator" aria-hidden="true">
     <div class="scroll-dot"></div>
     <span>Scroll</span>
   </div>
 </section>
 
-<!-- ─── MINEGPT ────────────────────────────────────────────── -->
+<!-- ─── OreAI ────────────────────────────────────────────────── -->
 <section class="oreai" id="oreai">
   <div class="oreai-inner">
-    <div class="oreai-badge">
+    <div class="oreai-badge" aria-label="Status: Coming Soon">
       <div class="dot"></div>
       <span>Coming Soon</span>
     </div>
@@ -563,13 +362,15 @@
       Early Access — Enter your email for updates about the OreAI and for early access.
     </p>
     <div class="signup-form" id="signup-form">
-      <input type="email" id="email-input" placeholder="Enter your email" />
-      <button onclick="handleSignup()">Sign Up</button>
+      <label for="email-input" class="visually-hidden">Email address</label>
+      <input type="email" id="email-input" placeholder="Enter your email"
+             autocomplete="email" />
+      <button id="signup-btn" type="button">Sign Up</button>
     </div>
   </div>
 </section>
 
-<!-- ─── VALUE PROP / SERVICES ────────────────────────────── -->
+<!-- ─── Services ─────────────────────────────────────────────── -->
 <section class="value-prop" id="services">
   <div class="container">
     <div class="value-prop-header">
@@ -578,22 +379,22 @@
 
     <div class="services-grid">
       <div class="service-card fade-up">
-        <div class="service-icon">🔧</div>
+        <div class="service-icon" aria-hidden="true">🔧</div>
         <h3>Custom Projects</h3>
         <p>We'll work with you to build your ideas or robust analytics systems.</p>
       </div>
       <div class="service-card fade-up fade-up-delay-1">
-        <div class="service-icon">🤖</div>
+        <div class="service-icon" aria-hidden="true">🤖</div>
         <h3>LLM / NLP Consulting</h3>
         <p>We'll help you understand where LLMs and other NLP tools could benefit your organization.</p>
       </div>
       <div class="service-card fade-up fade-up-delay-2">
-        <div class="service-icon">🔗</div>
+        <div class="service-icon" aria-hidden="true">🔗</div>
         <h3>External Data Engineering</h3>
         <p>Keep costs low by only hiring us to help with the most challenging parts of your data stack.</p>
       </div>
       <div class="service-card fade-up fade-up-delay-3">
-        <div class="service-icon">📚</div>
+        <div class="service-icon" aria-hidden="true">📚</div>
         <h3>Data Skills Training</h3>
         <p>We love to share our analytics and data knowledge and what training your organization needs.</p>
       </div>
@@ -601,12 +402,14 @@
   </div>
 </section>
 
-<!-- ─── FEATURED SERVICES ─────────────────────────────────── -->
+<!-- ─── Featured services ─────────────────────────────────────── -->
 <section class="featured">
   <div class="container">
     <div class="featured-grid">
       <div class="featured-card fade-up">
-        <div class="featured-card-img" style="background-image:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800')"></div>
+        <div class="featured-card-img"
+             style="background-image:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800')"
+             role="img" aria-label="Mining operations aerial view"></div>
         <div class="featured-card-body">
           <h3>Mining industry insights, data, and analytics tools</h3>
           <a href="#" class="featured-card-link">Learn more</a>
@@ -614,7 +417,9 @@
       </div>
 
       <div class="featured-card fade-up fade-up-delay-1">
-        <div class="featured-card-img" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800')"></div>
+        <div class="featured-card-img"
+             style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800')"
+             role="img" aria-label="Data analytics dashboard"></div>
         <div class="featured-card-body">
           <h3>Lead generation &amp; targeting for mine suppliers</h3>
           <a href="#" class="featured-card-link">Learn more</a>
@@ -622,7 +427,9 @@
       </div>
 
       <div class="featured-card fade-up fade-up-delay-2">
-        <div class="featured-card-img" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800')"></div>
+        <div class="featured-card-img"
+             style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800')"
+             role="img" aria-label="Data consulting"></div>
         <div class="featured-card-body">
           <h3>Data / Analytics Projects &amp; Consulting</h3>
           <a href="#" class="featured-card-link">Learn more</a>
@@ -632,13 +439,16 @@
   </div>
 </section>
 
-<!-- ─── PODCAST ───────────────────────────────────────────── -->
+<!-- ─── Podcast ───────────────────────────────────────────────── -->
 <section class="podcast" id="podcast">
   <div class="podcast-inner">
     <div class="podcast-visual fade-up">
-      <div class="podcast-visual-bg"></div>
-      <a href="https://www.youtube.com/@wovenmining" class="play-btn" aria-label="View podcasts on YouTube" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <div class="podcast-visual-bg" aria-hidden="true"></div>
+      <a href="https://www.youtube.com/@wovenmining"
+         class="play-btn"
+         aria-label="View The Mining &amp; AI Research Podcast on YouTube"
+         target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
       </a>
     </div>
 
@@ -647,21 +457,23 @@
       <p class="section-sub fade-up fade-up-delay-1">
         Join us as we explore the exciting research being done at the intersection of mining, geology, economics, and artificial intelligence.
       </p>
-      <a href="https://www.youtube.com/@wovenmining" class="btn btn-outline fade-up fade-up-delay-2" style="margin-top:2rem;display:inline-flex" target="_blank" rel="noopener">
+      <a href="https://www.youtube.com/@wovenmining"
+         class="btn btn-outline podcast-cta fade-up fade-up-delay-2"
+         target="_blank" rel="noopener noreferrer">
         View Our Podcasts On YouTube
       </a>
     </div>
   </div>
 </section>
 
-<!-- ─── FOOTER ────────────────────────────────────────────── -->
+<!-- ─── Footer ───────────────────────────────────────────────── -->
 <footer id="contact">
   <div class="footer-inner">
-    <div class="footer-links">
+    <nav class="footer-links" aria-label="Footer navigation">
       <a href="#contact">Contact Us</a>
-      <a href="#">About Us</a>
+      <a href="about.html">About Us</a>
       <a href="#">Our Policies</a>
-    </div>
+    </nav>
     <div class="footer-bottom">
       <p>© Woven Mining Inc. 2025</p>
       <p>Toronto, ON</p>
@@ -669,206 +481,51 @@
   </div>
 </footer>
 
+<!-- Visually-hidden utility (used for accessible labels) -->
+<style>
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+</style>
+
+<script src="js/hero-canvas.js"></script>
+<script src="js/main.js"></script>
 <script>
-  // ─── Hero canvas: topographic contour animation ───────────
-  (function () {
-    const canvas = document.getElementById('hero-canvas');
-    const ctx = canvas.getContext('2d');
-    let t = 0, raf;
+  // ─── Email signup form ────────────────────────────────────
+  const signupBtn   = document.getElementById('signup-btn');
+  const emailInput  = document.getElementById('email-input');
+  const signupForm  = document.getElementById('signup-form');
 
-    const ACCENT  = '26, 13%, ';
-    const N_LINES = 26;   // contour lines
-    const N_NODES = 28;   // data-point nodes
-
-    // Layered sine noise field — returns value in [-1, 1]
-    function field(x, y, time) {
-      const s = 0.0018;
-      return (
-        Math.sin(x * s * 1.4 + time * 0.18) * Math.cos(y * s * 1.9 + time * 0.11) +
-        Math.sin(x * s * 3.1 - time * 0.22 + y * s * 1.2) * 0.55 +
-        Math.cos(x * s * 0.8 + y * s * 2.6  + time * 0.08) * 0.35 +
-        Math.sin(x * s * 4.5 + time * 0.30 - y * s * 0.9) * 0.20
-      ) / 2.1;
-    }
-
-    // Smooth interpolation helper
-    function smooth(a, b, f) { return a + (b - a) * f; }
-
-    // Node objects — drift gently around the canvas
-    const nodes = [];
-    function initNodes(w, h) {
-      nodes.length = 0;
-      for (let i = 0; i < N_NODES; i++) {
-        nodes.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: (Math.random() - 0.5) * 0.25,
-          r: Math.random() * 1.5 + 0.6,
-          opacity: Math.random() * 0.3 + 0.1,
-        });
-      }
-    }
-
-    function resize() {
-      canvas.width  = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      initNodes(canvas.width, canvas.height);
-    }
-
-    function drawFrame() {
-      const w = canvas.width, h = canvas.height;
-      ctx.clearRect(0, 0, w, h);
-
-      // ── Contour lines ──────────────────────────────────────
-      // Sample the field on a grid, then draw iso-curves per row
-      const COLS = 180, step = w / COLS;
-
-      for (let li = 0; li < N_LINES; li++) {
-        const threshold = -1 + (2 / N_LINES) * li + 1 / N_LINES;
-        const distFromMid = Math.abs(li - N_LINES / 2) / (N_LINES / 2);
-        const opacity = smooth(0.22, 0.04, distFromMid * distFromMid);
-        const lightness = smooth(60, 45, distFromMid);
-
-        ctx.beginPath();
-        ctx.strokeStyle = `hsla(${ACCENT}${lightness}%, ${opacity})`;
-        ctx.lineWidth = li % 5 === 0 ? 1.4 : 0.8;   // index lines thicker
-
-        let penDown = false;
-        // Scan horizontally, track zero-crossings of (field - threshold)
-        let prevVal = field(0, 0, t) - threshold;
-
-        for (let ci = 0; ci <= COLS; ci++) {
-          const x = ci * step;
-          // Scan vertically for this column to find where field == threshold
-          const ROWS = 80;
-          for (let ri = 0; ri <= ROWS; ri++) {
-            const y  = (h / ROWS) * ri;
-            const v  = field(x, y, t) - threshold;
-            const pv = field(x, y - h / ROWS, t) - threshold;
-            if (ri > 0 && ((v >= 0 && pv < 0) || (v < 0 && pv >= 0))) {
-              // Interpolate the crossing y
-              const frac = Math.abs(pv) / (Math.abs(pv) + Math.abs(v));
-              const cx = x, cy = (y - h / ROWS) + frac * (h / ROWS);
-              if (!penDown) { ctx.moveTo(cx, cy); penDown = true; }
-              else            ctx.lineTo(cx, cy);
-            }
-          }
-        }
-        ctx.stroke();
-      }
-
-      // ── Data nodes ────────────────────────────────────────
-      nodes.forEach(n => {
-        // Drift
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0) n.x = w; if (n.x > w) n.x = 0;
-        if (n.y < 0) n.y = h; if (n.y > h) n.y = 0;
-
-        // Pulse opacity
-        const pulse = 0.5 + 0.5 * Math.sin(t * 1.2 + n.x * 0.01);
-        const op = n.opacity * (0.6 + 0.4 * pulse);
-
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(37, 9%, 82%, ${op})`;
-        ctx.fill();
-      });
-
-      // ── Connect nearby nodes with faint lines ─────────────
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.strokeStyle = `hsla(37, 9%, 75%, ${0.12 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      t += 0.006;
-      raf = requestAnimationFrame(drawFrame);
-    }
-
-    // Pause when tab hidden
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) cancelAnimationFrame(raf);
-      else drawFrame();
-    });
-
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
-    resize();
-    drawFrame();
-  })();
-
-  // ─── Mobile menu ──────────────────────────────────────────
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-  });
-
-  mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-    });
-  });
-
-  // ─── Scroll reveal ────────────────────────────────────────
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // Trigger hero elements immediately
-  document.querySelectorAll('.hero .fade-up').forEach(el => {
-    setTimeout(() => el.classList.add('visible'), 100);
-  });
-
-  // ─── Email signup ─────────────────────────────────────────
   function handleSignup() {
-    const input = document.getElementById('email-input');
-    const email = input.value.trim();
+    const email = emailInput.value.trim();
 
     if (!email || !email.includes('@')) {
-      input.style.borderColor = 'hsl(26,18%,65%)';
-      input.placeholder = 'Please enter a valid email';
+      emailInput.style.borderColor = 'hsl(26,18%,65%)';
+      emailInput.placeholder = 'Please enter a valid email';
+      emailInput.focus();
       setTimeout(() => {
-        input.style.borderColor = '';
-        input.placeholder = 'Enter your email';
+        emailInput.style.borderColor = '';
+        emailInput.placeholder = 'Enter your email';
       }, 2000);
       return;
     }
 
-    const form = document.getElementById('signup-form');
-    form.innerHTML = `
-      <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;
-        background:hsla(26,13%,55%,0.15);border:1px solid hsla(26,13%,55%,0.35);
-        border-radius:100px;color:hsl(26,18%,65%);font-weight:600;font-size:.9rem;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    signupForm.innerHTML = `
+      <div class="signup-success">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.5" aria-hidden="true">
           <polyline points="20 6 9 17 4 12"/>
         </svg>
         You're on the list! We'll be in touch.
       </div>`;
   }
 
-  document.getElementById('email-input')?.addEventListener('keydown', (e) => {
+  signupBtn.addEventListener('click', handleSignup);
+  emailInput.addEventListener('keydown', e => {
     if (e.key === 'Enter') handleSignup();
   });
-
 </script>
 </body>
 </html>
