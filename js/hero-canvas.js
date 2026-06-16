@@ -4,6 +4,8 @@
   const canvas = document.getElementById('hero-canvas');
   const ctx    = canvas.getContext('2d');
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // ── Constants ───────────────────────────────────────────────
   const ACCENT_HSL     = '26, 13%, ';
   const N_LINES        = 26;   // iso-contour lines to draw
@@ -14,9 +16,11 @@
   const ROWS           = 80;   // vertical samples per contour pass
   const TIME_STEP      = 0.006; // animation speed
 
-  let t   = 0;
-  let raf = null;
-  const nodes = [];
+  let t        = 0;
+  let raf      = null;
+  let logicalW = 0;
+  let logicalH = 0;
+  const nodes  = [];
 
   // ── Noise field ─────────────────────────────────────────────
   // Layered sine/cosine functions that approximate a smooth 2-D field.
@@ -48,18 +52,23 @@
   }
 
   // ── Resize ───────────────────────────────────────────────────
+  // Uses devicePixelRatio so the canvas is sharp on HiDPI/retina screens.
   function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    initNodes(canvas.width, canvas.height);
+    const dpr = window.devicePixelRatio || 1;
+    logicalW = canvas.offsetWidth;
+    logicalH = canvas.offsetHeight;
+    canvas.width  = logicalW * dpr;
+    canvas.height = logicalH * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    initNodes(logicalW, logicalH);
   }
 
   // ── Draw ─────────────────────────────────────────────────────
   function drawFrame() {
-    const w        = canvas.width;
-    const h        = canvas.height;
-    const colStep  = w / COLS;
-    const rowStep  = h / ROWS;
+    const w       = logicalW;
+    const h       = logicalH;
+    const colStep = w / COLS;
+    const rowStep = h / ROWS;
 
     ctx.clearRect(0, 0, w, h);
 
@@ -123,14 +132,19 @@
       }
     }
 
-    t   += TIME_STEP;
-    raf  = requestAnimationFrame(drawFrame);
+    t += TIME_STEP;
+    if (!prefersReducedMotion) {
+      raf = requestAnimationFrame(drawFrame);
+    }
   }
 
   // Pause when the tab is hidden to save CPU
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) cancelAnimationFrame(raf);
-    else drawFrame();
+    if (document.hidden) {
+      cancelAnimationFrame(raf);
+    } else if (!prefersReducedMotion) {
+      drawFrame();
+    }
   });
 
   const ro = new ResizeObserver(resize);

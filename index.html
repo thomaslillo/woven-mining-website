@@ -4,10 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Woven Mining — answer mining questions faster with data and AI. Serving miners, suppliers, and investors." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Woven Mining — Data and AI for the Mining Industry" />
+  <meta property="og:description" content="Answer mining questions faster with data and AI. Serving miners, suppliers, and investors." />
+  <meta property="og:url"         content="https://wovenmining.ca/" />
+  <meta property="og:image"       content="https://wovenmining.ca/horizontal+White.webp" />
+
   <title>Woven Mining</title>
+
+  <!-- SVG favicon using brand initial and accent colour -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23171210'/><text x='16' y='23' font-family='system-ui' font-size='19' font-weight='900' fill='%23a08c78' text-anchor='middle'>W</text></svg>" />
+  <link rel="canonical" href="https://wovenmining.ca/" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <style>
     /* ── Hero ──────────────────────────────────────────────── */
@@ -275,6 +288,53 @@
 
     .podcast-cta { margin-top: 2rem; }
 
+    /* ── Contact ──────────────────────────────────────────── */
+    .contact {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 6rem 4vw;
+    }
+
+    .contact-inner {
+      max-width: 680px; margin: 0 auto;
+    }
+
+    /* TODO: Replace action URL with your Formspree endpoint (https://formspree.io) */
+    .contact-form {
+      margin-top: 2.5rem;
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.825rem; font-weight: 600;
+      color: var(--off-white); letter-spacing: 0.01em;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 13px 18px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: rgba(255,255,255,0.04); color: var(--white);
+      font-family: var(--font); font-size: 0.9rem;
+      outline: none; transition: border-color .2s;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: rgba(255,255,255,0.25); }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); }
+
     /* ── Responsive ───────────────────────────────────────── */
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -285,6 +345,15 @@
       .podcast-inner { grid-template-columns: 1fr; gap: 3rem; }
       .featured-grid  { grid-template-columns: 1fr; }
       .services-grid  { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-dot::after { animation: none; }
+      .oreai-badge .dot  { animation: none; }
     }
   </style>
 </head>
@@ -330,144 +399,186 @@
   <a href="#">Blog</a>
 </nav>
 
-<!-- ─── Hero ─────────────────────────────────────────────────── -->
-<section class="hero js-reveal-immediate">
-  <canvas id="hero-canvas" aria-hidden="true"></canvas>
-  <div class="hero-fade" aria-hidden="true"></div>
+<!-- ─── Main content ─────────────────────────────────────────── -->
+<main>
 
-  <div class="hero-content">
-    <h1 class="fade-up">
-      answer <span>Mining</span> questions faster<br>with Data &amp; AI
-    </h1>
-    <p class="fade-up fade-up-delay-1">
-      The world runs on resources — we use artificial intelligence to help miners, suppliers, and investors make smarter decisions
-    </p>
-  </div>
+  <!-- ─── Hero ─────────────────────────────────────────────── -->
+  <section class="hero js-reveal-immediate">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-fade" aria-hidden="true"></div>
 
-  <div class="scroll-indicator" aria-hidden="true">
-    <div class="scroll-dot"></div>
-    <span>Scroll</span>
-  </div>
-</section>
-
-<!-- ─── OreAI ────────────────────────────────────────────────── -->
-<section class="oreai" id="oreai">
-  <div class="oreai-inner">
-    <div class="oreai-badge" aria-label="Status: Coming Soon">
-      <div class="dot"></div>
-      <span>Coming Soon</span>
-    </div>
-    <h2 class="section-title">OreAI is coming!</h2>
-    <p class="section-sub">
-      Early Access — Enter your email for updates about the OreAI and for early access.
-    </p>
-    <div class="signup-form" id="signup-form">
-      <label for="email-input" class="visually-hidden">Email address</label>
-      <input type="email" id="email-input" placeholder="Enter your email"
-             autocomplete="email" />
-      <button id="signup-btn" type="button">Sign Up</button>
-    </div>
-  </div>
-</section>
-
-<!-- ─── Services ─────────────────────────────────────────────── -->
-<section class="value-prop" id="services">
-  <div class="container">
-    <div class="value-prop-header">
-      <h2 class="section-title fade-up">We'll bring your data to life without breaking the bank.</h2>
-    </div>
-
-    <div class="services-grid">
-      <div class="service-card fade-up">
-        <div class="service-icon" aria-hidden="true">🔧</div>
-        <h3>Custom Projects</h3>
-        <p>We'll work with you to build your ideas or robust analytics systems.</p>
-      </div>
-      <div class="service-card fade-up fade-up-delay-1">
-        <div class="service-icon" aria-hidden="true">🤖</div>
-        <h3>LLM / NLP Consulting</h3>
-        <p>We'll help you understand where LLMs and other NLP tools could benefit your organization.</p>
-      </div>
-      <div class="service-card fade-up fade-up-delay-2">
-        <div class="service-icon" aria-hidden="true">🔗</div>
-        <h3>External Data Engineering</h3>
-        <p>Keep costs low by only hiring us to help with the most challenging parts of your data stack.</p>
-      </div>
-      <div class="service-card fade-up fade-up-delay-3">
-        <div class="service-icon" aria-hidden="true">📚</div>
-        <h3>Data Skills Training</h3>
-        <p>We love to share our analytics and data knowledge and what training your organization needs.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── Featured services ─────────────────────────────────────── -->
-<section class="featured">
-  <div class="container">
-    <div class="featured-grid">
-      <div class="featured-card fade-up">
-        <div class="featured-card-img"
-             style="background-image:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800')"
-             role="img" aria-label="Mining operations aerial view"></div>
-        <div class="featured-card-body">
-          <h3>Mining industry insights, data, and analytics tools</h3>
-          <a href="#" class="featured-card-link">Learn more</a>
-        </div>
-      </div>
-
-      <div class="featured-card fade-up fade-up-delay-1">
-        <div class="featured-card-img"
-             style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800')"
-             role="img" aria-label="Data analytics dashboard"></div>
-        <div class="featured-card-body">
-          <h3>Lead generation &amp; targeting for mine suppliers</h3>
-          <a href="#" class="featured-card-link">Learn more</a>
-        </div>
-      </div>
-
-      <div class="featured-card fade-up fade-up-delay-2">
-        <div class="featured-card-img"
-             style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800')"
-             role="img" aria-label="Data consulting"></div>
-        <div class="featured-card-body">
-          <h3>Data / Analytics Projects &amp; Consulting</h3>
-          <a href="#" class="featured-card-link">Learn more</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── Podcast ───────────────────────────────────────────────── -->
-<section class="podcast" id="podcast">
-  <div class="podcast-inner">
-    <div class="podcast-visual fade-up">
-      <div class="podcast-visual-bg" aria-hidden="true"></div>
-      <a href="https://www.youtube.com/@wovenmining"
-         class="play-btn"
-         aria-label="View The Mining &amp; AI Research Podcast on YouTube"
-         target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-      </a>
-    </div>
-
-    <div>
-      <h2 class="section-title fade-up">The mining &amp; AI research podcast</h2>
-      <p class="section-sub fade-up fade-up-delay-1">
-        Join us as we explore the exciting research being done at the intersection of mining, geology, economics, and artificial intelligence.
+    <div class="hero-content">
+      <h1 class="fade-up">
+        answer <span>Mining</span> questions faster<br>with Data &amp; AI
+      </h1>
+      <p class="fade-up fade-up-delay-1">
+        The world runs on resources — we use artificial intelligence to help miners, suppliers, and investors make smarter decisions
       </p>
-      <a href="https://www.youtube.com/@wovenmining"
-         class="btn btn-outline podcast-cta fade-up fade-up-delay-2"
-         target="_blank" rel="noopener noreferrer">
-        View Our Podcasts On YouTube
-      </a>
     </div>
-  </div>
-</section>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-dot"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── OreAI ─────────────────────────────────────────────── -->
+  <section class="oreai" id="oreai">
+    <div class="oreai-inner">
+      <div class="oreai-badge" aria-label="Status: Coming Soon">
+        <div class="dot"></div>
+        <span>Coming Soon</span>
+      </div>
+      <h2 class="section-title">OreAI is coming!</h2>
+      <p class="section-sub" style="margin: 0 auto;">
+        Early Access — Enter your email for updates about OreAI and for early access.
+      </p>
+      <!-- TODO: Replace action with your Formspree endpoint to enable real submissions -->
+      <form class="signup-form" id="signup-form" novalidate>
+        <label for="email-input" class="visually-hidden">Email address</label>
+        <input type="email" id="email-input" name="email"
+               placeholder="Enter your email"
+               autocomplete="email" required />
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── Services ─────────────────────────────────────────── -->
+  <section class="value-prop" id="services">
+    <div class="container">
+      <div class="value-prop-header">
+        <h2 class="section-title fade-up">We'll bring your data to life without breaking the bank.</h2>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon" aria-hidden="true">🔧</div>
+          <h3>Custom Projects</h3>
+          <p>We'll work with you to build your ideas or robust analytics systems.</p>
+        </div>
+        <div class="service-card fade-up fade-up-delay-1">
+          <div class="service-icon" aria-hidden="true">🤖</div>
+          <h3>LLM / NLP Consulting</h3>
+          <p>We'll help you understand where LLMs and other NLP tools could benefit your organization.</p>
+        </div>
+        <div class="service-card fade-up fade-up-delay-2">
+          <div class="service-icon" aria-hidden="true">🔗</div>
+          <h3>External Data Engineering</h3>
+          <p>Keep costs low by only hiring us to help with the most challenging parts of your data stack.</p>
+        </div>
+        <div class="service-card fade-up fade-up-delay-3">
+          <div class="service-icon" aria-hidden="true">📚</div>
+          <h3>Data Skills Training</h3>
+          <p>We love to share our analytics and data knowledge and what training your organization needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Featured services ────────────────────────────────── -->
+  <section class="featured">
+    <div class="container">
+      <div class="featured-grid">
+        <div class="featured-card fade-up">
+          <div class="featured-card-img"
+               style="background-image:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800')"
+               role="img" aria-label="Mining operations aerial view"></div>
+          <div class="featured-card-body">
+            <h3>Mining industry insights, data, and analytics tools</h3>
+            <a href="#" class="featured-card-link">Learn more</a>
+          </div>
+        </div>
+
+        <div class="featured-card fade-up fade-up-delay-1">
+          <div class="featured-card-img"
+               style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800')"
+               role="img" aria-label="Data analytics dashboard"></div>
+          <div class="featured-card-body">
+            <h3>Lead generation &amp; targeting for mine suppliers</h3>
+            <a href="#" class="featured-card-link">Learn more</a>
+          </div>
+        </div>
+
+        <div class="featured-card fade-up fade-up-delay-2">
+          <div class="featured-card-img"
+               style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800')"
+               role="img" aria-label="Data consulting"></div>
+          <div class="featured-card-body">
+            <h3>Data / Analytics Projects &amp; Consulting</h3>
+            <a href="#" class="featured-card-link">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Podcast ──────────────────────────────────────────── -->
+  <section class="podcast" id="podcast">
+    <div class="podcast-inner">
+      <div class="podcast-visual fade-up">
+        <div class="podcast-visual-bg" aria-hidden="true"></div>
+        <a href="https://www.youtube.com/@wovenmining"
+           class="play-btn"
+           aria-label="View The Mining &amp; AI Research Podcast on YouTube"
+           target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </a>
+      </div>
+
+      <div>
+        <h2 class="section-title fade-up">The mining &amp; AI research podcast</h2>
+        <p class="section-sub fade-up fade-up-delay-1">
+          Join us as we explore the exciting research being done at the intersection of mining, geology, economics, and artificial intelligence.
+        </p>
+        <a href="https://www.youtube.com/@wovenmining"
+           class="btn btn-outline podcast-cta fade-up fade-up-delay-2"
+           target="_blank" rel="noopener noreferrer">
+          View Our Podcasts On YouTube
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Contact ──────────────────────────────────────────── -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <p class="section-label fade-up">Contact Us</p>
+      <h2 class="section-title fade-up fade-up-delay-1">Get in touch</h2>
+      <p class="section-sub fade-up fade-up-delay-2">
+        Have a project in mind or want to learn more? Send us a message and we'll get back to you.
+      </p>
+      <!-- TODO: Add action="https://formspree.io/f/YOUR_ID" method="POST" to enable submissions -->
+      <form class="contact-form fade-up fade-up-delay-2" id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contact-name">Name</label>
+            <input type="text" id="contact-name" name="name"
+                   placeholder="Your name" autocomplete="name" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email</label>
+            <input type="email" id="contact-email" name="email"
+                   placeholder="your@email.com" autocomplete="email" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message"
+                    placeholder="Tell us about your project..."
+                    rows="5" required></textarea>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
 
 <!-- ─── Footer ───────────────────────────────────────────────── -->
-<footer id="contact">
+<footer>
   <div class="footer-inner">
     <nav class="footer-links" aria-label="Footer navigation">
       <a href="#contact">Contact Us</a>
@@ -481,24 +592,15 @@
   </div>
 </footer>
 
-<!-- Visually-hidden utility (used for accessible labels) -->
-<style>
-  .visually-hidden {
-    position: absolute; width: 1px; height: 1px;
-    padding: 0; margin: -1px; overflow: hidden;
-    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-  }
-</style>
-
 <script src="js/hero-canvas.js"></script>
 <script src="js/main.js"></script>
 <script>
   // ─── Email signup form ────────────────────────────────────
-  const signupBtn   = document.getElementById('signup-btn');
-  const emailInput  = document.getElementById('email-input');
   const signupForm  = document.getElementById('signup-form');
+  const emailInput  = document.getElementById('email-input');
 
-  function handleSignup() {
+  signupForm.addEventListener('submit', e => {
+    e.preventDefault();
     const email = emailInput.value.trim();
 
     if (!email || !email.includes('@')) {
@@ -520,11 +622,21 @@
         </svg>
         You're on the list! We'll be in touch.
       </div>`;
-  }
+  });
 
-  signupBtn.addEventListener('click', handleSignup);
-  emailInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') handleSignup();
+  // ─── Contact form ─────────────────────────────────────────
+  const contactForm = document.getElementById('contact-form');
+
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    contactForm.innerHTML = `
+      <div class="signup-success">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        Message received! We'll be in touch shortly.
+      </div>`;
   });
 </script>
 </body>

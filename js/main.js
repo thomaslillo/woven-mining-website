@@ -33,3 +33,15 @@ document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
 document.querySelectorAll('.js-reveal-immediate .fade-up').forEach(el => {
   setTimeout(() => el.classList.add('visible'), 80);
 });
+
+// ─── Active nav link ─────────────────────────────────────────
+// Marks the link matching the current page with aria-current and
+// highlights the parent dropdown trigger with .nav-current.
+const currentFile = location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
+  const href = a.getAttribute('href');
+  if (href && href === currentFile) {
+    a.setAttribute('aria-current', 'page');
+    a.closest('.dropdown')?.querySelector(':scope > a')?.classList.add('nav-current');
+  }
+});
