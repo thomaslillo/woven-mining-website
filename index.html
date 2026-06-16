@@ -140,26 +140,16 @@
       position: relative; overflow: hidden;
     }
 
-    .hero-bg {
+    #hero-canvas {
       position: absolute; inset: 0; z-index: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 4px; opacity: 0.22;
+      width: 100%; height: 100%;
     }
 
-    .hero-bg-img {
-      background-size: cover; background-position: center;
-    }
-    .hero-bg-img:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1567361808960-dec9cb578182?w=800'); grid-column: 1; grid-row: 1 / 3; }
-    .hero-bg-img:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800'); grid-column: 2; grid-row: 1; }
-    .hero-bg-img:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800'); grid-column: 3; grid-row: 1 / 3; }
-    .hero-bg-img:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800'); grid-column: 2; grid-row: 2; }
-
-    .hero-bg::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at center, hsla(23,14%,8%,0.4) 0%, hsla(23,14%,8%,0.85) 70%, var(--bg) 100%);
+    .hero-fade {
+      position: absolute; inset: 0; z-index: 1;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 50%, hsla(23,14%,8%,0.1) 0%, hsla(23,14%,8%,0.7) 70%, var(--bg) 100%),
+        linear-gradient(to bottom, transparent 60%, var(--bg) 100%);
     }
 
     .hero-content {
@@ -238,29 +228,29 @@
     }
 
     /* ─── MINEGPT SECTION ─────────────────────────────────── */
-    .minegpt {
+    .oreai {
       background: var(--bg2);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
 
-    .minegpt-inner {
+    .oreai-inner {
       max-width: 680px; margin: 0 auto;
       text-align: center;
     }
 
-    .minegpt-badge {
+    .oreai-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: hsla(26, 13%, 55%, 0.15); border: 1px solid hsla(26, 13%, 55%, 0.35);
       padding: 6px 16px; border-radius: 100px; margin-bottom: 1.5rem;
     }
 
-    .minegpt-badge .dot {
+    .oreai-badge .dot {
       width: 8px; height: 8px; border-radius: 50%;
       background: var(--accent-light); animation: pulse 1.8s infinite;
     }
 
-    .minegpt-badge span { font-size: 0.75rem; font-weight: 600; color: var(--accent-light); letter-spacing: 0.08em; text-transform: uppercase; }
+    .oreai-badge span { font-size: 0.75rem; font-weight: 600; color: var(--accent-light); letter-spacing: 0.08em; text-transform: uppercase; }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
@@ -547,12 +537,8 @@
 
 <!-- ─── HERO ──────────────────────────────────────────────── -->
 <section class="hero">
-  <div class="hero-bg">
-    <div class="hero-bg-img"></div>
-    <div class="hero-bg-img"></div>
-    <div class="hero-bg-img"></div>
-    <div class="hero-bg-img"></div>
-  </div>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-fade"></div>
 
   <div class="hero-content">
     <h1 class="fade-up">
@@ -570,15 +556,15 @@
 </section>
 
 <!-- ─── MINEGPT ────────────────────────────────────────────── -->
-<section class="minegpt" id="minegpt">
-  <div class="minegpt-inner">
-    <div class="minegpt-badge">
+<section class="oreai" id="oreai">
+  <div class="oreai-inner">
+    <div class="oreai-badge">
       <div class="dot"></div>
       <span>Coming Soon</span>
     </div>
-    <h2 class="section-title">MineGPT is coming!</h2>
+    <h2 class="section-title">OreAI is coming!</h2>
     <p class="section-sub">
-      Early Access — Enter your email for updates about the MineGPT and for early access.
+      Early Access — Enter your email for updates about the OreAI and for early access.
     </p>
     <div class="signup-form" id="signup-form">
       <input type="email" id="email-input" placeholder="Enter your email" />
@@ -688,6 +674,144 @@
 </footer>
 
 <script>
+  // ─── Hero canvas: topographic contour animation ───────────
+  (function () {
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    let t = 0, raf;
+
+    const ACCENT  = '26, 13%, ';
+    const N_LINES = 26;   // contour lines
+    const N_NODES = 28;   // data-point nodes
+
+    // Layered sine noise field — returns value in [-1, 1]
+    function field(x, y, time) {
+      const s = 0.0018;
+      return (
+        Math.sin(x * s * 1.4 + time * 0.18) * Math.cos(y * s * 1.9 + time * 0.11) +
+        Math.sin(x * s * 3.1 - time * 0.22 + y * s * 1.2) * 0.55 +
+        Math.cos(x * s * 0.8 + y * s * 2.6  + time * 0.08) * 0.35 +
+        Math.sin(x * s * 4.5 + time * 0.30 - y * s * 0.9) * 0.20
+      ) / 2.1;
+    }
+
+    // Smooth interpolation helper
+    function smooth(a, b, f) { return a + (b - a) * f; }
+
+    // Node objects — drift gently around the canvas
+    const nodes = [];
+    function initNodes(w, h) {
+      nodes.length = 0;
+      for (let i = 0; i < N_NODES; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
+          r: Math.random() * 1.5 + 0.6,
+          opacity: Math.random() * 0.3 + 0.1,
+        });
+      }
+    }
+
+    function resize() {
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      initNodes(canvas.width, canvas.height);
+    }
+
+    function drawFrame() {
+      const w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // ── Contour lines ──────────────────────────────────────
+      // Sample the field on a grid, then draw iso-curves per row
+      const COLS = 180, step = w / COLS;
+
+      for (let li = 0; li < N_LINES; li++) {
+        const threshold = -1 + (2 / N_LINES) * li + 1 / N_LINES;
+        const distFromMid = Math.abs(li - N_LINES / 2) / (N_LINES / 2);
+        const opacity = smooth(0.22, 0.04, distFromMid * distFromMid);
+        const lightness = smooth(60, 45, distFromMid);
+
+        ctx.beginPath();
+        ctx.strokeStyle = `hsla(${ACCENT}${lightness}%, ${opacity})`;
+        ctx.lineWidth = li % 5 === 0 ? 1.4 : 0.8;   // index lines thicker
+
+        let penDown = false;
+        // Scan horizontally, track zero-crossings of (field - threshold)
+        let prevVal = field(0, 0, t) - threshold;
+
+        for (let ci = 0; ci <= COLS; ci++) {
+          const x = ci * step;
+          // Scan vertically for this column to find where field == threshold
+          const ROWS = 80;
+          for (let ri = 0; ri <= ROWS; ri++) {
+            const y  = (h / ROWS) * ri;
+            const v  = field(x, y, t) - threshold;
+            const pv = field(x, y - h / ROWS, t) - threshold;
+            if (ri > 0 && ((v >= 0 && pv < 0) || (v < 0 && pv >= 0))) {
+              // Interpolate the crossing y
+              const frac = Math.abs(pv) / (Math.abs(pv) + Math.abs(v));
+              const cx = x, cy = (y - h / ROWS) + frac * (h / ROWS);
+              if (!penDown) { ctx.moveTo(cx, cy); penDown = true; }
+              else            ctx.lineTo(cx, cy);
+            }
+          }
+        }
+        ctx.stroke();
+      }
+
+      // ── Data nodes ────────────────────────────────────────
+      nodes.forEach(n => {
+        // Drift
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0) n.x = w; if (n.x > w) n.x = 0;
+        if (n.y < 0) n.y = h; if (n.y > h) n.y = 0;
+
+        // Pulse opacity
+        const pulse = 0.5 + 0.5 * Math.sin(t * 1.2 + n.x * 0.01);
+        const op = n.opacity * (0.6 + 0.4 * pulse);
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(37, 9%, 82%, ${op})`;
+        ctx.fill();
+      });
+
+      // ── Connect nearby nodes with faint lines ─────────────
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.strokeStyle = `hsla(37, 9%, 75%, ${0.12 * (1 - dist / 120)})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      t += 0.006;
+      raf = requestAnimationFrame(drawFrame);
+    }
+
+    // Pause when tab hidden
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) cancelAnimationFrame(raf);
+      else drawFrame();
+    });
+
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
+    resize();
+    drawFrame();
+  })();
+
   // ─── Mobile menu ──────────────────────────────────────────
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
