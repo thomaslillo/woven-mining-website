@@ -245,9 +245,8 @@
     }
 
     .minegpt-inner {
-      max-width: var(--max-w); margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
-      align-items: center;
+      max-width: 680px; margin: 0 auto;
+      text-align: center;
     }
 
     .minegpt-badge {
@@ -266,64 +265,6 @@
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: .5; transform: scale(0.85); }
-    }
-
-    .minegpt-visual {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      position: relative; overflow: hidden;
-    }
-
-    .minegpt-visual::before {
-      content: '';
-      position: absolute; top: -60px; right: -60px;
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, hsla(26, 13%, 55%, 0.2), transparent 70%);
-      border-radius: 50%;
-    }
-
-    .chat-window {
-      display: flex; flex-direction: column; gap: 12px;
-    }
-
-    .chat-msg {
-      display: flex; gap: 10px; align-items: flex-start;
-    }
-    .chat-msg.user { flex-direction: row-reverse; }
-
-    .chat-avatar {
-      width: 32px; height: 32px; border-radius: 50%;
-      flex-shrink: 0; display: grid; place-items: center;
-      font-size: 0.7rem; font-weight: 700;
-    }
-    .chat-avatar.ai { background: var(--accent); }
-    .chat-avatar.human { background: hsl(23, 13%, 20%); color: var(--muted); }
-
-    .chat-bubble {
-      max-width: 75%; padding: 10px 14px; border-radius: 12px;
-      font-size: 0.82rem; line-height: 1.5;
-    }
-    .chat-msg.ai .chat-bubble { background: hsl(23, 13%, 16%); border-radius: 4px 12px 12px 12px; }
-    .chat-msg.user .chat-bubble { background: var(--accent); border-radius: 12px 4px 12px 12px; }
-
-    .chat-typing {
-      display: flex; gap: 4px; align-items: center; padding: 10px 14px;
-      background: hsl(23, 13%, 16%); border-radius: 4px 12px 12px 12px;
-      width: fit-content;
-    }
-    .chat-typing span {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--muted);
-      animation: bounce 1.2s infinite;
-    }
-    .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
-    .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes bounce {
-      0%, 60%, 100% { transform: translateY(0); }
-      30% { transform: translateY(-5px); }
     }
 
     .signup-form {
@@ -358,8 +299,6 @@
 
     .value-prop-header {
       max-width: var(--max-w); margin: 0 auto 4rem;
-      display: flex; justify-content: space-between; align-items: flex-end;
-      flex-wrap: wrap; gap: 2rem;
     }
 
     .services-grid {
@@ -483,90 +422,32 @@
     .play-btn:hover { transform: scale(1.08); background: var(--accent-light); }
     .play-btn svg { width: 28px; height: 28px; fill: white; margin-left: 4px; }
 
-    .podcast-episodes { margin-top: 2rem; display: flex; flex-direction: column; gap: 12px; }
-
-    .episode-item {
-      display: flex; gap: 16px; align-items: center;
-      padding: 14px 16px; border-radius: 10px;
-      background: var(--bg2); border: 1px solid var(--border);
-      cursor: pointer; transition: background .2s;
-    }
-    .episode-item:hover { background: var(--bg3); }
-
-    .episode-num {
-      font-size: 0.72rem; font-weight: 700; color: var(--accent-light);
-      letter-spacing: 0.05em; min-width: 28px;
-    }
-
-    .episode-info h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 2px; }
-    .episode-info p { font-size: 0.75rem; color: var(--muted); }
-
-    /* ─── STATS ──────────────────────────────────────────── */
-    .stats {
-      background: var(--accent);
-      padding: 4rem 4vw;
-    }
-
-    .stats-inner {
-      max-width: var(--max-w); margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 2rem; text-align: center;
-    }
-
-    .stat-num {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 800; letter-spacing: -0.03em;
-      margin-bottom: 0.4rem;
-    }
-
-    .stat-label { font-size: 0.875rem; opacity: 0.8; }
-
     /* ─── FOOTER ─────────────────────────────────────────── */
     footer {
       background: hsl(23, 14%, 5%); border-top: 1px solid var(--border);
-      padding: 4rem 4vw 2.5rem;
+      padding: 3rem 4vw;
+      text-align: center;
     }
 
-    .footer-inner {
-      max-width: var(--max-w); margin: 0 auto;
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    .footer-links {
+      display: flex; justify-content: center; gap: 2.5rem;
+      flex-wrap: wrap; margin-bottom: 1.5rem;
     }
 
-    .footer-top {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem; padding-bottom: 3rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .footer-brand p {
-      font-size: 0.875rem; color: var(--muted);
-      line-height: 1.7; margin-top: 1rem; max-width: 260px;
-    }
-
-    .footer-col h4 {
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--muted);
-      margin-bottom: 1.2rem;
-    }
-
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
-
-    .footer-col a {
+    .footer-links a {
       font-size: 0.875rem; color: var(--off-white);
       text-decoration: none; transition: color .2s;
     }
-    .footer-col a:hover { color: var(--white); }
+    .footer-links a:hover { color: var(--white); }
 
     .footer-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      padding-top: 2rem; flex-wrap: wrap; gap: 1rem;
+      display: flex; justify-content: center; gap: 1.5rem;
+      flex-wrap: wrap;
     }
 
     .footer-bottom p { font-size: 0.8rem; color: var(--muted); }
-
-    .footer-location {
-      font-size: 0.8rem; color: var(--muted);
-      display: flex; align-items: center; gap: 6px;
-    }
 
     /* ─── ANIMATIONS ─────────────────────────────────────── */
     .fade-up {
@@ -605,26 +486,19 @@
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .featured-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-top { grid-template-columns: 1fr 1fr; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
-      .minegpt-inner { grid-template-columns: 1fr; gap: 3rem; }
       .podcast-inner { grid-template-columns: 1fr; gap: 3rem; }
       .featured-grid { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .value-prop-header { flex-direction: column; align-items: flex-start; }
     }
 
     @media (max-width: 480px) {
-      .footer-top { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-direction: column; gap: 1rem; }
     }
   </style>
 </head>
@@ -651,12 +525,11 @@
     <li class="dropdown">
       <a href="#">About Us</a>
       <ul class="dropdown-menu">
-        <li><a href="#about">About</a></li>
+        <li><a href="#">About</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Blog</a></li>
       </ul>
     </li>
-    <li><a href="#podcast">Podcast</a></li>
-    <li><a href="#" class="nav-cta">Get Early Access</a></li>
   </ul>
 
   <div class="hamburger" id="hamburger" aria-label="Menu">
@@ -669,8 +542,7 @@
   <a href="#">Data Portal Login</a>
   <a href="#">About</a>
   <a href="#contact">Contact</a>
-  <a href="#podcast">Podcast</a>
-  <a href="#minegpt" style="color:hsl(26,18%,65%);font-weight:700;">Get Early Access →</a>
+  <a href="#">Blog</a>
 </div>
 
 <!-- ─── HERO ──────────────────────────────────────────────── -->
@@ -683,17 +555,12 @@
   </div>
 
   <div class="hero-content">
-    <div class="hero-eyebrow fade-up">Mining Intelligence Platform</div>
-    <h1 class="fade-up fade-up-delay-1">
-      Answer <span>Mining</span> questions faster<br>with Data &amp; AI
+    <h1 class="fade-up">
+      answer <span>Mining</span> questions faster<br>with Data &amp; AI
     </h1>
-    <p class="fade-up fade-up-delay-2">
-      Woven Mining brings cutting-edge data engineering and artificial intelligence to the mining industry — without breaking the bank.
+    <p class="fade-up fade-up-delay-1">
+      The world runs on resources — we use artificial intelligence to help miners, suppliers, and investors make smarter decisions
     </p>
-    <div class="hero-actions fade-up fade-up-delay-3">
-      <a href="#minegpt" class="btn btn-primary">Get Early Access</a>
-      <a href="#services" class="btn btn-outline">Explore Services</a>
-    </div>
   </div>
 
   <div class="scroll-indicator">
@@ -705,45 +572,17 @@
 <!-- ─── MINEGPT ────────────────────────────────────────────── -->
 <section class="minegpt" id="minegpt">
   <div class="minegpt-inner">
-    <div>
-      <div class="minegpt-badge">
-        <div class="dot"></div>
-        <span>Coming Soon</span>
-      </div>
-      <div class="section-label">AI-Powered Research</div>
-      <h2 class="section-title">MineGPT<br>is coming!</h2>
-      <p class="section-sub">
-        The AI assistant purpose-built for the mining industry. Query geological reports, production data, commodity trends, and regulatory filings — all in plain English.
-      </p>
-
-      <div class="signup-form" id="signup-form">
-        <input type="email" id="email-input" placeholder="Enter your email for early access" />
-        <button onclick="handleSignup()">Notify Me</button>
-      </div>
-      <p class="privacy-note">We respect your privacy. No spam, ever.</p>
+    <div class="minegpt-badge">
+      <div class="dot"></div>
+      <span>Coming Soon</span>
     </div>
-
-    <div class="minegpt-visual">
-      <div class="chat-window">
-        <div class="chat-msg user">
-          <div class="chat-avatar human">TK</div>
-          <div class="chat-bubble">What's the average copper grade at Escondida mine over the last 5 years?</div>
-        </div>
-        <div class="chat-msg ai">
-          <div class="chat-avatar ai">M</div>
-          <div class="chat-bubble">Based on BHP's annual reports, Escondida's average copper grade has ranged from 0.82% to 1.05% Cu between 2019–2023, with a downward trend due to ore body depletion at depth...</div>
-        </div>
-        <div class="chat-msg user">
-          <div class="chat-avatar human">TK</div>
-          <div class="chat-bubble">Compare that with Collahuasi</div>
-        </div>
-        <div class="chat-msg ai">
-          <div class="chat-avatar ai">M</div>
-          <div class="chat-typing">
-            <span></span><span></span><span></span>
-          </div>
-        </div>
-      </div>
+    <h2 class="section-title">MineGPT is coming!</h2>
+    <p class="section-sub">
+      Early Access — Enter your email for updates about the MineGPT and for early access.
+    </p>
+    <div class="signup-form" id="signup-form">
+      <input type="email" id="email-input" placeholder="Enter your email" />
+      <button onclick="handleSignup()">Sign Up</button>
     </div>
   </div>
 </section>
@@ -752,35 +591,29 @@
 <section class="value-prop" id="services">
   <div class="container">
     <div class="value-prop-header">
-      <div>
-        <div class="section-label fade-up">What We Do</div>
-        <h2 class="section-title fade-up fade-up-delay-1">We'll bring your data to life<br>without breaking the bank.</h2>
-      </div>
-      <p class="section-sub fade-up fade-up-delay-2">
-        From custom analytics projects to LLM consulting, we deliver data solutions tailored to the mining sector.
-      </p>
+      <h2 class="section-title fade-up">We'll bring your data to life without breaking the bank.</h2>
     </div>
 
     <div class="services-grid">
       <div class="service-card fade-up">
         <div class="service-icon">🔧</div>
         <h3>Custom Projects</h3>
-        <p>End-to-end data and analytics projects scoped to your mine's unique operational challenges and datasets.</p>
+        <p>We'll work with you to build your ideas or robust analytics systems.</p>
       </div>
       <div class="service-card fade-up fade-up-delay-1">
         <div class="service-icon">🤖</div>
         <h3>LLM / NLP Consulting</h3>
-        <p>Deploy large language models and natural language processing to extract insights from technical mining documents.</p>
+        <p>We'll help you understand where LLMs and other NLP tools could benefit your organization.</p>
       </div>
       <div class="service-card fade-up fade-up-delay-2">
         <div class="service-icon">🔗</div>
         <h3>External Data Engineering</h3>
-        <p>Ingest, clean, and enrich third-party commodity, geological, and market data into your existing infrastructure.</p>
+        <p>Keep costs low by only hiring us to help with the most challenging parts of your data stack.</p>
       </div>
       <div class="service-card fade-up fade-up-delay-3">
         <div class="service-icon">📚</div>
         <h3>Data Skills Training</h3>
-        <p>Upskill your team with hands-on workshops in Python, SQL, data visualization, and applied machine learning.</p>
+        <p>We love to share our analytics and data knowledge and what training your organization needs.</p>
       </div>
     </div>
   </div>
@@ -789,16 +622,11 @@
 <!-- ─── FEATURED SERVICES ─────────────────────────────────── -->
 <section class="featured">
   <div class="container">
-    <div class="section-label fade-up" style="text-align:center;margin-bottom:.5rem">Featured Solutions</div>
-    <h2 class="section-title fade-up fade-up-delay-1" style="text-align:center;margin-bottom:3rem">Built for the modern mining operation</h2>
-
     <div class="featured-grid">
       <div class="featured-card fade-up">
         <div class="featured-card-img" style="background-image:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800')"></div>
         <div class="featured-card-body">
-          <div class="featured-card-tag">Analytics</div>
-          <h3>Mining Industry Insights &amp; Analytics Tools</h3>
-          <p>Interactive dashboards and reports covering production, costs, reserves, and commodity price exposure across global operations.</p>
+          <h3>Mining industry insights, data, and analytics tools</h3>
           <a href="#" class="featured-card-link">Learn more</a>
         </div>
       </div>
@@ -806,9 +634,7 @@
       <div class="featured-card fade-up fade-up-delay-1">
         <div class="featured-card-img" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800')"></div>
         <div class="featured-card-body">
-          <div class="featured-card-tag">Lead Generation</div>
-          <h3>Lead Generation &amp; Targeting for Suppliers</h3>
-          <p>Identify high-value prospects in the mining supply chain using our proprietary data pipeline and scoring models.</p>
+          <h3>Lead generation &amp; targeting for mine suppliers</h3>
           <a href="#" class="featured-card-link">Learn more</a>
         </div>
       </div>
@@ -816,9 +642,7 @@
       <div class="featured-card fade-up fade-up-delay-2">
         <div class="featured-card-img" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800')"></div>
         <div class="featured-card-body">
-          <div class="featured-card-tag">Consulting</div>
           <h3>Data / Analytics Projects &amp; Consulting</h3>
-          <p>Senior-level data science consulting for exploration companies, producers, and investors who need analytical edge.</p>
           <a href="#" class="featured-card-link">Learn more</a>
         </div>
       </div>
@@ -826,71 +650,23 @@
   </div>
 </section>
 
-<!-- ─── STATS ─────────────────────────────────────────────── -->
-<div class="stats">
-  <div class="stats-inner">
-    <div class="fade-up">
-      <div class="stat-num" data-count="150">0</div>
-      <div class="stat-label">Mining Datasets Catalogued</div>
-    </div>
-    <div class="fade-up fade-up-delay-1">
-      <div class="stat-num" data-count="40">0</div>
-      <div class="stat-label">Countries Covered</div>
-    </div>
-    <div class="fade-up fade-up-delay-2">
-      <div class="stat-num" data-count="20">0</div>
-      <div class="stat-label">Enterprise Clients</div>
-    </div>
-    <div class="fade-up fade-up-delay-3">
-      <div class="stat-num">∞</div>
-      <div class="stat-label">Questions Answerable</div>
-    </div>
-  </div>
-</div>
-
 <!-- ─── PODCAST ───────────────────────────────────────────── -->
 <section class="podcast" id="podcast">
   <div class="podcast-inner">
     <div class="podcast-visual fade-up">
       <div class="podcast-visual-bg"></div>
-      <a href="#" class="play-btn" aria-label="Play podcast">
+      <a href="https://www.youtube.com/@wovenmining" class="play-btn" aria-label="View podcasts on YouTube" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       </a>
     </div>
 
     <div>
-      <div class="section-label fade-up">Audio Series</div>
-      <h2 class="section-title fade-up fade-up-delay-1">The Mining &amp; AI<br>Research Podcast</h2>
-      <p class="section-sub fade-up fade-up-delay-2">
-        Exploring the intersection of mining, geology, economics, and artificial intelligence. New episodes every two weeks.
+      <h2 class="section-title fade-up">The mining &amp; AI research podcast</h2>
+      <p class="section-sub fade-up fade-up-delay-1">
+        Join us as we explore the exciting research being done at the intersection of mining, geology, economics, and artificial intelligence.
       </p>
-
-      <div class="podcast-episodes fade-up fade-up-delay-3">
-        <div class="episode-item">
-          <div class="episode-num">EP 08</div>
-          <div class="episode-info">
-            <h4>How LLMs Are Reading Geological Reports</h4>
-            <p>38 min · Mining AI · 2024</p>
-          </div>
-        </div>
-        <div class="episode-item">
-          <div class="episode-num">EP 07</div>
-          <div class="episode-info">
-            <h4>Copper Supply Gaps &amp; AI Forecasting</h4>
-            <p>42 min · Economics · 2024</p>
-          </div>
-        </div>
-        <div class="episode-item">
-          <div class="episode-num">EP 06</div>
-          <div class="episode-info">
-            <h4>Data Engineering in Remote Operations</h4>
-            <p>35 min · Engineering · 2024</p>
-          </div>
-        </div>
-      </div>
-
-      <a href="#" class="btn btn-outline" style="margin-top:2rem;display:inline-flex">
-        View All Episodes
+      <a href="https://www.youtube.com/@wovenmining" class="btn btn-outline fade-up fade-up-delay-2" style="margin-top:2rem;display:inline-flex" target="_blank" rel="noopener">
+        View Our Podcasts On YouTube
       </a>
     </div>
   </div>
@@ -899,54 +675,14 @@
 <!-- ─── FOOTER ────────────────────────────────────────────── -->
 <footer id="contact">
   <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#" class="nav-logo" style="font-size:1.1rem">
-          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="28" height="28" rx="6" fill="hsl(26,13%,55%)"/>
-            <path d="M6 20L10 10L14 16L18 10L22 20" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Woven Mining
-        </a>
-        <p>Data and AI solutions purpose-built for the global mining industry. Toronto, ON.</p>
-      </div>
-
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#">Our Services</a></li>
-          <li><a href="#">Data Portal Login</a></li>
-          <li><a href="#">MineGPT Early Access</a></li>
-          <li><a href="#">Case Studies</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Podcast</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Cookie Policy</a></li>
-        </ul>
-      </div>
+    <div class="footer-links">
+      <a href="#contact">Contact Us</a>
+      <a href="#">About Us</a>
+      <a href="#">Our Policies</a>
     </div>
-
     <div class="footer-bottom">
-      <p>© Woven Mining Inc. 2025 · Toronto, ON</p>
-      <div class="footer-location">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Toronto, Ontario, Canada
-      </div>
+      <p>© Woven Mining Inc. 2025</p>
+      <p>Toronto, ON</p>
     </div>
   </div>
 </footer>
@@ -971,12 +707,7 @@
   // ─── Scroll reveal ────────────────────────────────────────
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        // count-up for stat numbers
-        const el = e.target.querySelector('[data-count]') || (e.target.dataset.count ? e.target : null);
-        if (el && el.dataset.count) animateCount(el);
-      }
+      if (e.isIntersecting) e.target.classList.add('visible');
     });
   }, { threshold: 0.15 });
 
@@ -985,34 +716,6 @@
   // Trigger hero elements immediately
   document.querySelectorAll('.hero .fade-up').forEach(el => {
     setTimeout(() => el.classList.add('visible'), 100);
-  });
-
-  // ─── Count-up animation ───────────────────────────────────
-  function animateCount(el) {
-    const target = parseInt(el.dataset.count);
-    const duration = 1500;
-    const step = target / (duration / 16);
-    let current = 0;
-    const update = () => {
-      current = Math.min(current + step, target);
-      el.textContent = Math.round(current) + (target >= 100 ? '+' : '');
-      if (current < target) requestAnimationFrame(update);
-    };
-    requestAnimationFrame(update);
-  }
-
-  // Observe stat numbers
-  document.querySelectorAll('[data-count]').forEach(el => {
-    const parent = el.closest('.fade-up');
-    if (parent) {
-      const statObserver = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          animateCount(el);
-          statObserver.disconnect();
-        }
-      }, { threshold: 0.3 });
-      statObserver.observe(parent);
-    }
   });
 
   // ─── Email signup ─────────────────────────────────────────
@@ -1025,7 +728,7 @@
       input.placeholder = 'Please enter a valid email';
       setTimeout(() => {
         input.style.borderColor = '';
-        input.placeholder = 'Enter your email for early access';
+        input.placeholder = 'Enter your email';
       }, 2000);
       return;
     }
@@ -1046,13 +749,6 @@
     if (e.key === 'Enter') handleSignup();
   });
 
-  // ─── Podcast episode click ────────────────────────────────
-  document.querySelectorAll('.episode-item').forEach(item => {
-    item.addEventListener('click', () => {
-      document.querySelectorAll('.episode-item').forEach(i => i.style.background = '');
-      item.style.background = 'hsla(26,13%,55%,0.15)';
-    });
-  });
 </script>
 </body>
 </html>
