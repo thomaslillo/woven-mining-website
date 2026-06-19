@@ -180,25 +180,18 @@
     }
 
     .strip-item {
-      padding: 2.75rem 2rem;
+      padding: 2.25rem 2rem;
       border-right: 1px solid var(--border);
-      position: relative;
     }
     .strip-item:last-child { border-right: none; }
-    .strip-item::before {
-      content: '';
-      position: absolute; top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: var(--accent);
-    }
 
     .strip-label {
       font-size: 0.63rem; font-weight: 700; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
     }
     .strip-value {
-      font-size: 1.5rem; font-weight: 800; letter-spacing: -0.025em;
-      color: var(--white); margin-bottom: 0.5rem;
+      font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 0.4rem;
     }
     .strip-desc {
       font-size: 0.8rem; color: var(--muted); line-height: 1.55;
@@ -211,61 +204,30 @@
 
     .tagline-item {
       display: grid;
-      grid-template-columns: 200px 1fr;
-      min-height: 280px;
+      grid-template-columns: 120px 1fr;
       border-bottom: 1px solid var(--border);
-      position: relative; overflow: hidden;
-      transition: background 0.3s;
     }
     .tagline-item:last-child { border-bottom: none; }
-    .tagline-item:hover { background: hsla(26,13%,55%,0.035); }
-
-    /* Sliding accent underline on hover */
-    .tagline-item::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(to right, var(--accent), transparent 55%);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.45s ease;
-    }
-    .tagline-item:hover::after { transform: scaleX(1); }
 
     .tagline-num-col {
-      padding: 3.5rem 2.5rem;
-      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 3rem 2rem;
+      display: flex; align-items: flex-start;
       border-right: 1px solid var(--border);
-      position: relative; overflow: hidden;
-    }
-
-    /* Giant ghost number */
-    .tagline-num-col::before {
-      content: attr(data-num);
-      position: absolute; bottom: -0.15em; left: -0.08em;
-      font-size: 11rem; font-weight: 900; line-height: 1;
-      letter-spacing: -0.05em;
-      color: hsla(26,13%,55%,0.07);
-      pointer-events: none;
     }
 
     .tagline-num {
       font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em;
       text-transform: uppercase; color: var(--accent);
-      position: relative; z-index: 1;
-    }
-
-    .ore-bar {
-      width: 36px; height: 4px; border-radius: 2px;
-      position: relative; z-index: 1;
     }
 
     .tagline-quote-col {
-      padding: 3.5rem 5rem 3.5rem 4rem;
+      padding: 3rem 4rem;
       display: flex; align-items: center;
     }
 
     .tagline-item blockquote {
-      font-size: clamp(1.25rem, 2.6vw, 1.95rem);
-      font-weight: 700; line-height: 1.3;
+      font-size: clamp(1.1rem, 2.2vw, 1.65rem);
+      font-weight: 700; line-height: 1.35;
       letter-spacing: -0.02em; color: var(--white);
     }
 
@@ -338,45 +300,23 @@
 
     /* ── Closing ──────────────────────────────────── */
     .closing {
-      padding: 9rem 4vw;
+      padding: 7rem 4vw;
       text-align: center;
-      position: relative; overflow: hidden;
-    }
-
-    /* Horizontal geological layer lines */
-    .closing::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        180deg,
-        transparent 0, transparent 30px,
-        hsla(26,13%,55%,0.04) 30px, hsla(26,13%,55%,0.04) 32px
-      );
     }
 
     .closing-inner {
-      max-width: 860px; margin: 0 auto;
-      position: relative; z-index: 1;
-    }
-
-    /* Ore chip row */
-    .closing-ore {
-      display: flex; justify-content: center; gap: 5px;
-      margin-bottom: 2.5rem;
-    }
-    .ore-chip {
-      width: 44px; height: 6px; border-radius: 3px;
+      max-width: 780px; margin: 0 auto;
     }
 
     .closing-divider {
       width: 48px; height: 2px;
-      background: var(--accent); margin: 2rem auto 2.5rem;
+      background: var(--accent); margin: 0 auto 2.5rem;
     }
 
     .closing p {
-      font-size: clamp(1.3rem, 2.8vw, 2rem);
+      font-size: clamp(1.15rem, 2.4vw, 1.7rem);
       font-weight: 700; line-height: 1.45;
-      letter-spacing: -0.02em; color: var(--white);
+      letter-spacing: -0.015em; color: var(--off-white);
     }
 
     /* ── Responsive ───────────────────────────────── */
@@ -384,24 +324,17 @@
       .data-strip-inner { grid-template-columns: 1fr; }
       .strip-item { border-right: none; border-bottom: 1px solid var(--border); }
       .strip-item:last-child { border-bottom: none; }
-      .tagline-item { grid-template-columns: 120px 1fr; }
-      .tagline-num-col { padding: 2.5rem 2rem; }
-      .tagline-quote-col { padding: 2.5rem 2rem; }
       .drill-core, .depth-markers { display: none; }
     }
 
     @media (max-width: 768px) {
       .team-grid { grid-template-columns: 1fr; }
+      .tagline-quote-col { padding: 2.5rem 2rem; }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 480px) {
       .tagline-item { grid-template-columns: 1fr; }
-      .tagline-num-col {
-        border-right: none; border-bottom: 1px solid var(--border);
-        flex-direction: row; align-items: center; gap: 1rem;
-        padding: 1.75rem 2rem;
-      }
-      .tagline-num-col::before { font-size: 5rem; }
+      .tagline-num-col { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; }
       .tagline-quote-col { padding: 2rem; }
     }
 
@@ -513,9 +446,8 @@
   <section class="taglines" aria-label="Our principles">
 
     <div class="tagline-item fade-up">
-      <div class="tagline-num-col" data-num="01">
+      <div class="tagline-num-col">
         <p class="tagline-num">01</p>
-        <div class="ore-bar" style="background:hsl(45,60%,50%);" aria-hidden="true"></div>
       </div>
       <div class="tagline-quote-col">
         <blockquote>Just like any resource, data is only useful after it's been mined and processed.</blockquote>
@@ -523,9 +455,8 @@
     </div>
 
     <div class="tagline-item fade-up">
-      <div class="tagline-num-col" data-num="02">
+      <div class="tagline-num-col">
         <p class="tagline-num">02</p>
-        <div class="ore-bar" style="background:hsl(27,60%,48%);" aria-hidden="true"></div>
       </div>
       <div class="tagline-quote-col">
         <blockquote>We build tools to make answering questions about mining fast and easy.</blockquote>
@@ -533,9 +464,8 @@
     </div>
 
     <div class="tagline-item fade-up">
-      <div class="tagline-num-col" data-num="03">
+      <div class="tagline-num-col">
         <p class="tagline-num">03</p>
-        <div class="ore-bar" style="background:hsl(200,20%,62%);" aria-hidden="true"></div>
       </div>
       <div class="tagline-quote-col">
         <blockquote>From NI 43-101 Technical Reports to financial disclosure documents, we've got data for everyone.</blockquote>
@@ -589,15 +519,6 @@
   <!-- ─── Closing ──────────────────────────────────────────── -->
   <section class="closing">
     <div class="closing-inner">
-      <!-- Ore sample chips -->
-      <div class="closing-ore fade-up" aria-hidden="true">
-        <div class="ore-chip" style="background:hsl(45,60%,50%);"></div>
-        <div class="ore-chip" style="background:hsl(35,50%,44%);"></div>
-        <div class="ore-chip" style="background:hsl(27,60%,46%);"></div>
-        <div class="ore-chip" style="background:hsl(200,20%,58%);"></div>
-        <div class="ore-chip" style="background:hsl(130,18%,42%);"></div>
-        <div class="ore-chip" style="background:hsl(23,14%,38%);"></div>
-      </div>
       <div class="closing-divider fade-up" aria-hidden="true"></div>
       <p class="fade-up fade-up-delay-1">Together, they combine technical excellence with strategic vision to drive innovation and growth.</p>
     </div>
