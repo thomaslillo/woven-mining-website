@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Terms of Use and Privacy Policy for Woven Mining." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Our Policies — Woven Mining" />
+  <meta property="og:description" content="Terms of Use and Privacy Policy for Woven Mining." />
+  <meta property="og:url"         content="https://wovenmining.ca/terms-of-use" />
+  <meta property="og:image"       content="https://wovenmining.ca/horizontal+White.webp" />
+
+  <title>Our Policies — Woven Mining</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23171210'/><text x='16' y='23' font-family='system-ui' font-size='19' font-weight='900' fill='%23a08c78' text-anchor='middle'>W</text></svg>" />
+  <link rel="canonical" href="https://wovenmining.ca/terms-of-use" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ═══════════════════════════════════════════════════
+       OUR POLICIES (TERMS OF USE / PRIVACY POLICY)
+    ═══════════════════════════════════════════════════ */
+
+    /* ── Hero ─────────────────────────────────────────── */
+    .page-hero {
+      padding-top: var(--nav-height);
+      min-height: 38vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+
+    /* Geological strata gradient */
+    .strata-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        hsl(23,14%,7%)  0%,
+        hsl(24,16%,9%) 18%,
+        hsl(23,18%,11%) 32%,
+        hsl(25,14%,9%)  50%,
+        hsl(23,16%,13%) 65%,
+        hsl(22,14%,10%) 82%,
+        hsl(23,14%,8%) 100%
+      );
+    }
+
+    /* Rock layer diagonal lines */
+    .strata-lines {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          -9deg,
+          transparent 0, transparent 48px,
+          hsla(26,13%,55%,0.055) 48px, hsla(26,13%,55%,0.055) 50px
+        ),
+        repeating-linear-gradient(
+          -20deg,
+          transparent 0, transparent 100px,
+          hsla(26,13%,55%,0.03) 100px, hsla(26,13%,55%,0.03) 102px
+        );
+    }
+
+    /* Seismic scan-line animation */
+    .scan-line {
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent 0%, hsla(26,18%,65%,0.7) 50%, transparent 100%);
+      animation: scanDown 7s ease-in-out infinite;
+      z-index: 1;
+    }
+    @keyframes scanDown {
+      0%   { top: 12%; opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { top: 88%; opacity: 0; }
+    }
+
+    .page-hero-inner {
+      position: relative; z-index: 3;
+      max-width: var(--max-w); margin: 0 auto; width: 100%;
+      padding: 0 4vw;
+    }
+
+    .page-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent-light);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .page-label::before {
+      content: '';
+      width: 28px; height: 1px; background: var(--accent-light);
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.03em;
+      max-width: 680px;
+    }
+
+    /* ── Policy sections ──────────────────────────────── */
+    .policy-section + .policy-section { margin-top: 4rem; }
+
+    .policy-section h2 {
+      font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 0.5rem;
+    }
+
+    .policy-updated {
+      font-size: 0.85rem; font-weight: 600; color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    /* ── Closing CTA ──────────────────────────────────── */
+    .closing {
+      padding: 1rem 4vw 5rem;
+      text-align: center;
+    }
+
+    .closing-inner {
+      max-width: 780px; margin: 0 auto;
+    }
+
+    .closing-divider {
+      width: 48px; height: 2px;
+      background: var(--accent); margin: 0 auto 2.5rem;
+    }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .scan-line { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ───────────────────────────────────────────── -->
+<nav class="site-nav">
+  <button class="hamburger" id="hamburger"
+          aria-label="Toggle navigation menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <a href="index.html" class="nav-logo">
+    <img src="horizontal+White.webp" alt="Woven Mining" class="nav-logo-img" />
+  </a>
+
+  <div class="nav-spacer" aria-hidden="true"></div>
+</nav>
+
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+  <a href="services.html">Our Services</a>
+  <a href="portal/login/index.html">Data Portal Login</a>
+  <a href="about.html">About</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="blog/index.html">Blog</a>
+</nav>
+
+<!-- ─── Main content ─────────────────────────────────────────── -->
+<main>
+
+  <!-- ─── Hero ────────────────────────────────────────────── -->
+  <header class="page-hero js-reveal-immediate">
+    <div class="strata-bg"   aria-hidden="true"></div>
+    <div class="strata-lines" aria-hidden="true"></div>
+    <div class="scan-line"   aria-hidden="true"></div>
+
+    <div class="page-hero-inner">
+      <p class="page-label fade-up">Legal</p>
+      <h1 class="fade-up fade-up-delay-1">Our Policies</h1>
+    </div>
+  </header>
+
+  <!-- ─── Policy body ─────────────────────────────────────── -->
+  <article class="post-body">
+
+    <section class="policy-section">
+      <h2>Terms of Use</h2>
+      <p class="policy-updated">Last Updated: 05/02/2025</p>
+
+      <h3>1. Acceptance of Terms</h3>
+      <p>By accessing, browsing, or using this website (the "Site"), operated by <strong>Woven Mining</strong> ("Company," "we," "us," or "our"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Use ("Terms"). If you do not agree to these Terms, please do not use the Site.</p>
+      <p>We reserve the right to modify these Terms at any time. Any changes will be posted on this page, and the effective date will be updated accordingly. Your continued use of the Site after any such modifications indicates your acceptance of the new Terms. Please check this page periodically.</p>
+
+      <h3>2. Intellectual Property</h3>
+      <p>All text, graphics, photographs, trademarks, logos, artwork, and other content on the Site (collectively, "Content") is owned by or licensed to us and is protected by applicable intellectual property laws. We grant you a limited, non-exclusive, non-transferable license to access and view the Content for your personal, non-commercial use. You may not:</p>
+      <ul>
+        <li>Reproduce, modify, distribute, transmit, display, perform, publish, license, create derivative works from, sell, or otherwise exploit any Content without our prior written permission.</li>
+        <li>Remove or alter any copyright, trademark, or other proprietary notices contained in the Content.</li>
+      </ul>
+
+      <h3>3. Prohibited Use</h3>
+      <p>You may use the Site only for lawful purposes and in accordance with these Terms. You agree not to:</p>
+      <ol>
+        <li>Use the Site in any way that violates any applicable federal, provincial, local, or international law or regulation.</li>
+        <li>Interfere with, disrupt, or attempt to gain unauthorised access to any portion of the Site or its related systems, servers, or networks.</li>
+        <li>Introduce any viruses, Trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.</li>
+        <li>Use automated means (such as bots, crawlers, or scrapers) to access the Site for any purpose.</li>
+        <li>Attempt to damage or disrupt the operation or security of the Site, or any user's use and enjoyment of the Site.</li>
+      </ol>
+
+      <h3>4. Third-Party Links</h3>
+      <p>The Site may contain links to external websites or resources that are not owned or controlled by us. We do not endorse and are not responsible for the content, privacy policies, or practices of any third-party websites. You agree that we shall not be liable for any loss or damage resulting from your use of third-party websites.</p>
+
+      <h3>5. Disclaimer of Warranties</h3>
+      <p>"To the fullest extent permitted by law, the Site and its Content are provided on an 'as is' and 'as available' basis, without warranties of any kind, either express or implied."</p>
+      <p>We disclaim all warranties, express or implied, including but not limited to implied warranties of merchant-ability, fitness for a particular purpose, and non-infringement.</p>
+      <p>We do not warrant that the Site or the Content will be accurate, complete, timely, uninterrupted, secure, or error-free, or that any defects will be corrected. Your use of the Site is solely at your own risk.</p>
+
+      <h3>6. Limitation of Liability</h3>
+      <p>"To the fullest extent permitted by applicable law, under no circumstances shall we, our affiliates, or our respective officers, directors, employees, agents, or licensors be liable for any indirect, incidental, special, consequential, or exemplary damages, including but not limited to loss of profits, business interruption, or data loss, arising out of or in connection with your use of, or inability to use, the Site or its Content, even if we have been advised of the possibility of such damages."</p>
+      <p>Some jurisdictions, including Québec, do not allow certain limitations of liability. If these laws apply to you, some or all of the above exclusions or limitations may not apply.</p>
+
+      <h3>7. Privacy Policy</h3>
+      <p>We respect your privacy. Any personal information we collect through the Site will be handled in accordance with our Privacy Policy, which can be viewed below these Terms, which is incorporated by reference into these Terms. By using the Site, you consent to all actions taken by us with respect to your personal information in compliance with the Privacy Policy and applicable Canadian privacy laws, including PIPEDA and/or relevant provincial legislation.</p>
+
+      <h3>8. Cookies and Tracking Technologies</h3>
+      <p>We may use cookies and similar technologies to collect information about how you use our Site. This helps us improve site performance and user experience. For more information about the cookies we use and how to manage or block them, please refer to our Privacy Policy.</p>
+
+      <h3>9. Governing Law</h3>
+      <p>These Terms and any dispute or claim arising out of or related to these Terms (including non-contractual disputes or claims) shall be governed by and construed in accordance with the laws of <strong>[Province, e.g., Ontario]</strong> and the federal laws of Canada applicable therein, without giving effect to any choice or conflict of law provision or rule. You agree to submit to the exclusive jurisdiction of the courts located in <strong>[Province, e.g., Ontario]</strong> for the resolution of any disputes.</p>
+
+      <h3>10. Entire Agreement</h3>
+      <p>These Terms, together with our Privacy Policy and any other legal notices or additional policies published by us on the Site, constitute the entire agreement between you and us regarding the Site and supersede all prior and contemporaneous understandings, agreements, representations, and warranties, both written and oral, regarding the Site.</p>
+
+      <h3>11. Severability</h3>
+      <p>If any provision of these Terms is held to be invalid, illegal, or unenforceable by a court of competent jurisdiction, such provision shall be eliminated or limited to the minimum extent necessary so that the remaining provisions of the Terms will continue in full force and effect.</p>
+
+      <h3>12. No Waiver</h3>
+      <p>Our failure to enforce any right or provision of these Terms shall not be deemed a waiver of such right or provision. Any waiver of any provision of these Terms will be effective only if in writing and signed by an authorised representative of the Company.</p>
+
+      <h3>13. Contact Information</h3>
+      <p>If you have any questions or concerns regarding these Terms or the Site, please contact us at <a href="mailto:thomas@wovenmining.ca">thomas@wovenmining.ca</a>.</p>
+      <p><strong>Woven Mining</strong><br>Toronto, Ontario, Canada</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>Privacy Policy</h2>
+      <p class="policy-updated">Last Updated: 05/02/2025</p>
+
+      <p>Welcome to the website ("Site") of <strong>Woven Mining</strong> ("we," "us," or "our"). We are committed to respecting and protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information when you visit our Site.</p>
+
+      <h3>1. Information We Collect</h3>
+      <ul>
+        <li><strong>Automatically Collected Data</strong>: When you visit our Site, our servers may automatically record certain information such as your IP address, browser type, operating system, referring URLs, and date/time stamps of page visits.</li>
+        <li><strong>Cookies</strong>: We may use cookies or similar technologies to analyze Site traffic and performance. You can adjust your browser settings to refuse cookies, but some features of the Site may not function properly.</li>
+      </ul>
+
+      <h3>2. How We Use Your Information</h3>
+      <ul>
+        <li><strong>Site Operation</strong>: We use automatically collected data to ensure our Site functions properly, to monitor Site performance, and to improve user experience.</li>
+        <li><strong>Communication</strong>: If you provide us with contact information (e.g., via email), we may use it to respond to your inquiries, send updates, or provide requested information.</li>
+        <li><strong>Analytics</strong>: We may use third-party analytics tools (e.g., Google Analytics) to help us understand how visitors use the Site. These tools collect information sent by your browser, such as pages visited and other usage data.</li>
+      </ul>
+
+      <h3>3. Sharing Your Information</h3>
+      <ul>
+        <li><strong>Service Providers</strong>: We may share your information with trusted third parties who assist us in operating the Site or providing related services. These providers are required to keep your information confidential and only use it for the purposes we specify.</li>
+        <li><strong>Legal Compliance</strong>: We may disclose your personal information if required by law, court order, or governmental regulation, or if such disclosure is necessary to protect our rights or the rights of others.</li>
+        <li><strong>Business Transfers</strong>: If we are involved in a merger, acquisition, or asset sale, your personal information may be transferred to a successor or affiliate as part of that transaction.</li>
+      </ul>
+
+      <h3>4. Data Security</h3>
+      <p>We take reasonable administrative, technical, and physical measures to protect your personal information against accidental or unlawful destruction, loss, alteration, unauthorised access, or disclosure. However, no method of data transmission or storage is completely secure, and we cannot guarantee absolute security.</p>
+
+      <h3>5. Retention of Your Information</h3>
+      <p>We retain personal information only for as long as necessary to fulfil the purposes for which it was collected, or to comply with legal or regulatory requirements.</p>
+
+      <h3>6. Your Rights and Choices</h3>
+      <ul>
+        <li><strong>Opt-Out</strong>: You can opt out of cookies or analytics by adjusting your browser settings or using opt-out tools provided by the analytics service.</li>
+        <li><strong>Access and Correction</strong>: If you are a Canadian resident, you may have the right to request access to, or correction of, the personal information we hold about you. To exercise these rights, please contact us using the information below.</li>
+      </ul>
+
+      <h3>7. Children's Privacy</h3>
+      <p>Our Site is not directed at children, and we do not knowingly collect personal information from individuals under the age of majority without parental consent. If you believe a child has provided us with personal information, please contact us immediately.</p>
+
+      <h3>8. Links to Third-Party Websites</h3>
+      <p>Our Site may contain links to external websites that we do not operate. We are not responsible for the content, privacy policies, or practices of these websites.</p>
+
+      <h3>9. Changes to This Policy</h3>
+      <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with a new "Last Updated" date. Your continued use of our Site after any revisions indicates your acceptance of the updated terms.</p>
+
+      <h3>10. Contact Us</h3>
+      <p>If you have questions or concerns about this Privacy Policy or our data practices, please contact us at: <a href="mailto:thomas@wovenmining.ca">thomas@wovenmining.ca</a></p>
+      <p><strong>Woven Mining</strong><br>Toronto, Ontario</p>
+    </section>
+
+  </article>
+
+  <!-- ─── Closing CTA ─────────────────────────────────────── -->
+  <section class="closing">
+    <div class="closing-inner">
+      <div class="closing-divider fade-up" aria-hidden="true"></div>
+      <a href="index.html#contact" class="btn btn-primary fade-up fade-up-delay-1">Contact Us</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─── Footer ───────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html#contact">Contact Us</a>
+      <a href="about.html">About Us</a>
+      <a href="terms-of-use.html" aria-current="page">Our Policies</a>
+    </nav>
+    <div class="footer-bottom">
+      <p>© Woven Mining Inc. 2026</p>
+      <p>Toronto, ON</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
