@@ -252,17 +252,8 @@
 
     .featured-card h3 {
       font-size: 1.05rem; font-weight: 700; line-height: 1.4;
-      margin-bottom: 1.25rem;
+      margin-bottom: 0;
     }
-
-    .featured-card-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.85rem; font-weight: 600;
-      color: var(--white); text-decoration: none;
-      transition: gap .2s;
-    }
-    .featured-card-link:hover { gap: 10px; }
-    .featured-card-link::after { content: '→'; }
 
     /* ── Podcast ──────────────────────────────────────────── */
     .podcast {
@@ -390,7 +381,7 @@
 
 <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
   <a href="services.html">Our Services</a>
-  <a href="#">Data Portal Login</a>
+  <a href="portal/login/index.html">Data Portal Login</a>
   <a href="about.html">About</a>
   <a href="#contact">Contact</a>
   <a href="blog/index.html">Blog</a>
@@ -501,6 +492,11 @@
   <!-- ─── Featured services ────────────────────────────────── -->
   <section class="featured">
     <div class="container">
+      <div class="value-prop-header">
+        <div class="value-prop-rule" aria-hidden="true"></div>
+        <h2 class="section-title fade-up">Some of Our Service Offerings</h2>
+      </div>
+
       <div class="featured-grid">
         <div class="featured-card fade-up">
           <div class="featured-card-img"
@@ -508,7 +504,6 @@
                role="img" aria-label="Mining operations aerial view"></div>
           <div class="featured-card-body">
             <h3>Mining industry insights, data, and analytics tools</h3>
-            <a href="services.html#mining-data-analytics-tools" class="featured-card-link">Learn more</a>
           </div>
         </div>
 
@@ -518,7 +513,6 @@
                role="img" aria-label="Data analytics dashboard"></div>
           <div class="featured-card-body">
             <h3>Lead generation &amp; targeting for mine suppliers</h3>
-            <a href="services.html#lead-generation" class="featured-card-link">Learn more</a>
           </div>
         </div>
 
@@ -528,7 +522,6 @@
                role="img" aria-label="Data consulting"></div>
           <div class="featured-card-body">
             <h3>Data / Analytics Projects &amp; Consulting</h3>
-            <a href="services.html#data-consulting" class="featured-card-link">Learn more</a>
           </div>
         </div>
       </div>
@@ -608,7 +601,7 @@
       <a href="#">Our Policies</a>
     </nav>
     <div class="footer-bottom">
-      <p>© Woven Mining Inc. 2025</p>
+      <p>© Woven Mining Inc. 2026</p>
       <p>Toronto, ON</p>
     </div>
   </div>

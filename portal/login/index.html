@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sign in to the Woven Mining Data Portal to access NI 43-101 technical reports, financial disclosures, and mining analytics tools." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Data Portal Login — Woven Mining" />
+  <meta property="og:description" content="Sign in to the Woven Mining Data Portal to access NI 43-101 technical reports, financial disclosures, and mining analytics tools." />
+  <meta property="og:url"         content="https://wovenmining.ca/portal/login" />
+  <meta property="og:image"       content="https://wovenmining.ca/horizontal+White.webp" />
+
+  <title>Data Portal Login — Woven Mining</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23171210'/><text x='16' y='23' font-family='system-ui' font-size='19' font-weight='900' fill='%23a08c78' text-anchor='middle'>W</text></svg>" />
+  <link rel="canonical" href="https://wovenmining.ca/portal/login" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/styles.css" />
+  <style>
+    /* ═══════════════════════════════════════════════════
+       DATA PORTAL LOGIN
+    ═══════════════════════════════════════════════════ */
+
+    /* ── Hero ─────────────────────────────────────────── */
+    .page-hero {
+      padding-top: var(--nav-height);
+      min-height: 38vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+
+    /* Geological strata gradient */
+    .strata-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        hsl(23,14%,7%)  0%,
+        hsl(24,16%,9%) 18%,
+        hsl(23,18%,11%) 32%,
+        hsl(25,14%,9%)  50%,
+        hsl(23,16%,13%) 65%,
+        hsl(22,14%,10%) 82%,
+        hsl(23,14%,8%) 100%
+      );
+    }
+
+    /* Rock layer diagonal lines */
+    .strata-lines {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          -9deg,
+          transparent 0, transparent 48px,
+          hsla(26,13%,55%,0.055) 48px, hsla(26,13%,55%,0.055) 50px
+        ),
+        repeating-linear-gradient(
+          -20deg,
+          transparent 0, transparent 100px,
+          hsla(26,13%,55%,0.03) 100px, hsla(26,13%,55%,0.03) 102px
+        );
+    }
+
+    /* Seismic scan-line animation */
+    .scan-line {
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent 0%, hsla(26,18%,65%,0.7) 50%, transparent 100%);
+      animation: scanDown 7s ease-in-out infinite;
+      z-index: 1;
+    }
+    @keyframes scanDown {
+      0%   { top: 12%; opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { top: 88%; opacity: 0; }
+    }
+
+    .page-hero-inner {
+      position: relative; z-index: 3;
+      max-width: var(--max-w); margin: 0 auto; width: 100%;
+      padding: 0 4vw;
+    }
+
+    .page-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent-light);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .page-label::before {
+      content: '';
+      width: 28px; height: 1px; background: var(--accent-light);
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-weight: 800; line-height: 1.04;
+      letter-spacing: -0.04em;
+      max-width: 680px;
+    }
+
+    /* ── Login card ───────────────────────────────────── */
+    .login-section {
+      padding: 1rem 4vw 7rem;
+    }
+
+    .login-card {
+      max-width: 420px; margin: 0 auto;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+
+    .login-icon {
+      width: 36px; height: 36px;
+      color: var(--accent-light);
+      margin-bottom: 1.25rem;
+    }
+    .login-icon svg { width: 100%; height: 100%; display: block; }
+
+    .login-card h2 {
+      font-size: 1.3rem; font-weight: 800;
+      letter-spacing: -0.01em; margin-bottom: 0.6rem;
+    }
+
+    .login-card .card-text {
+      font-size: 0.9rem; color: var(--muted); line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .login-form {
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.825rem; font-weight: 600;
+      color: var(--off-white); letter-spacing: 0.01em;
+    }
+
+    .form-group input {
+      padding: 13px 18px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: rgba(255,255,255,0.04); color: var(--white);
+      font-family: var(--font); font-size: 0.9rem;
+      outline: none; transition: border-color .2s;
+    }
+    .form-group input:focus { border-color: rgba(255,255,255,0.25); }
+    .form-group input::placeholder { color: var(--muted); }
+
+    .login-row {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.85rem;
+    }
+    .login-remember {
+      display: flex; align-items: center; gap: 8px;
+      color: var(--muted);
+    }
+    .login-row a {
+      color: var(--accent-light); text-decoration: none;
+    }
+    .login-row a:hover { color: var(--white); }
+
+    .login-form .btn {
+      justify-content: center; width: 100%;
+      margin-top: 0.25rem;
+    }
+
+    .login-message {
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--accent-light);
+      text-align: center;
+      display: none;
+    }
+    .login-message.visible { display: block; }
+
+    .login-footnote {
+      text-align: center; margin-top: 1.75rem;
+      font-size: 0.85rem; color: var(--muted);
+    }
+    .login-footnote a {
+      color: var(--accent-light); text-decoration: none; font-weight: 600;
+    }
+    .login-footnote a:hover { color: var(--white); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scan-line { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ───────────────────────────────────────────── -->
+<nav class="site-nav">
+  <button class="hamburger" id="hamburger"
+          aria-label="Toggle navigation menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <a href="../../index.html" class="nav-logo">
+    <img src="../../horizontal+White.webp" alt="Woven Mining" class="nav-logo-img" />
+  </a>
+
+  <div class="nav-spacer" aria-hidden="true"></div>
+</nav>
+
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+  <a href="../../services.html">Our Services</a>
+  <a href="../login/index.html" aria-current="page">Data Portal Login</a>
+  <a href="../../about.html">About</a>
+  <a href="../../index.html#contact">Contact</a>
+  <a href="../../blog/index.html">Blog</a>
+</nav>
+
+<!-- ─── Main content ─────────────────────────────────────────── -->
+<main>
+
+  <!-- ─── Hero ────────────────────────────────────────────── -->
+  <header class="page-hero js-reveal-immediate">
+    <div class="strata-bg"   aria-hidden="true"></div>
+    <div class="strata-lines" aria-hidden="true"></div>
+    <div class="scan-line"   aria-hidden="true"></div>
+
+    <div class="page-hero-inner">
+      <p class="page-label fade-up">Client Access</p>
+      <h1 class="fade-up fade-up-delay-1">Data Portal Login</h1>
+    </div>
+  </header>
+
+  <!-- ─── Login card ──────────────────────────────────────── -->
+  <section class="login-section" aria-label="Data portal login">
+    <div class="login-card fade-up">
+      <div class="login-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="10" width="16" height="10" rx="2"/>
+          <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+        </svg>
+      </div>
+      <h2>Sign in to your account</h2>
+      <p class="card-text">Access exploration data, NI 43-101 technical reports, and your saved analytics dashboards.</p>
+
+      <!-- TODO: Wire up to real authentication backend once the Data Portal ships -->
+      <form class="login-form" id="portal-login-form" novalidate>
+        <div class="form-group">
+          <label for="portal-username">Username</label>
+          <input type="text" id="portal-username" name="username"
+                 autocomplete="username" placeholder="Enter your username" required />
+        </div>
+        <div class="form-group">
+          <label for="portal-password">Password</label>
+          <input type="password" id="portal-password" name="password"
+                 autocomplete="current-password" placeholder="Enter your password" required />
+        </div>
+
+        <div class="login-row">
+          <label class="login-remember">
+            <input type="checkbox" id="portal-remember" name="remember" />
+            Remember me
+          </label>
+          <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Log In</button>
+
+        <p class="login-message" id="login-message" role="status"></p>
+      </form>
+
+      <p class="login-footnote">
+        Don't have an account?
+        <a href="../../index.html#contact">Contact us to request access</a>.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─── Footer ───────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="../../index.html#contact">Contact Us</a>
+      <a href="../../about.html">About Us</a>
+      <a href="#">Our Policies</a>
+    </nav>
+    <div class="footer-bottom">
+      <p>© Woven Mining Inc. 2026</p>
+      <p>Toronto, ON</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+  // ─── Portal login form ─────────────────────────────────────
+  // No authentication backend exists yet — this only simulates the
+  // flow so the Data Portal can be previewed ahead of launch.
+  const loginForm = document.getElementById('portal-login-form');
+  const loginMessage = document.getElementById('login-message');
+
+  loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    loginMessage.textContent = 'The Data Portal is not yet open to the public. Contact us to request early access.';
+    loginMessage.classList.add('visible');
+  });
+</script>
+</body>
+</html>
