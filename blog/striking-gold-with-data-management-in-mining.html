@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Why disciplined data management is the foundation for safer, more efficient, and more profitable mining operations." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article" />
+  <meta property="og:title"       content="Striking Gold with Data Management in Mining — Woven Mining" />
+  <meta property="og:description" content="Why disciplined data management is the foundation for safer, more efficient, and more profitable mining operations." />
+  <meta property="og:url"         content="https://wovenmining.ca/blog/striking-gold-with-data-management-in-mining" />
+  <meta property="og:image"       content="https://wovenmining.ca/horizontal+White.webp" />
+
+  <title>Striking Gold with Data Management in Mining — Woven Mining</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23171210'/><text x='16' y='23' font-family='system-ui' font-size='19' font-weight='900' fill='%23a08c78' text-anchor='middle'>W</text></svg>" />
+  <link rel="canonical" href="https://wovenmining.ca/blog/striking-gold-with-data-management-in-mining" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    /* ═══════════════════════════════════════════════════
+       BLOG POST PAGE
+    ═══════════════════════════════════════════════════ */
+
+    /* ── Hero ─────────────────────────────────────────── */
+    .page-hero {
+      padding-top: var(--nav-height);
+      min-height: 56vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+
+    /* Geological strata gradient */
+    .strata-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        hsl(23,14%,7%)  0%,
+        hsl(24,16%,9%) 18%,
+        hsl(23,18%,11%) 32%,
+        hsl(25,14%,9%)  50%,
+        hsl(23,16%,13%) 65%,
+        hsl(22,14%,10%) 82%,
+        hsl(23,14%,8%) 100%
+      );
+    }
+
+    /* Rock layer diagonal lines */
+    .strata-lines {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          -9deg,
+          transparent 0, transparent 48px,
+          hsla(26,13%,55%,0.055) 48px, hsla(26,13%,55%,0.055) 50px
+        ),
+        repeating-linear-gradient(
+          -20deg,
+          transparent 0, transparent 100px,
+          hsla(26,13%,55%,0.03) 100px, hsla(26,13%,55%,0.03) 102px
+        );
+    }
+
+    /* Seismic scan-line animation */
+    .scan-line {
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent 0%, hsla(26,18%,65%,0.7) 50%, transparent 100%);
+      animation: scanDown 7s ease-in-out infinite;
+      z-index: 1;
+    }
+    @keyframes scanDown {
+      0%   { top: 12%; opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { top: 88%; opacity: 0; }
+    }
+
+    .page-hero-inner {
+      position: relative; z-index: 3;
+      max-width: var(--max-w); margin: 0 auto; width: 100%;
+      padding: 0 4vw;
+    }
+
+    .page-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent-light);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .page-label::before {
+      content: '';
+      width: 28px; height: 1px; background: var(--accent-light);
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.03em;
+      max-width: 680px;
+    }
+
+    /* ── Closing CTA ──────────────────────────────────── */
+    .closing {
+      padding: 1rem 4vw 5rem;
+      text-align: center;
+    }
+
+    .closing-inner {
+      max-width: 780px; margin: 0 auto;
+    }
+
+    .closing-divider {
+      width: 48px; height: 2px;
+      background: var(--accent); margin: 0 auto 2.5rem;
+    }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .scan-line { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ───────────────────────────────────────────── -->
+<nav class="site-nav">
+  <button class="hamburger" id="hamburger"
+          aria-label="Toggle navigation menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <a href="../index.html" class="nav-logo">
+    <img src="../horizontal+White.webp" alt="Woven Mining" class="nav-logo-img" />
+  </a>
+
+  <div class="nav-spacer" aria-hidden="true"></div>
+</nav>
+
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+  <a href="../services.html">Our Services</a>
+  <a href="#">Data Portal Login</a>
+  <a href="../about.html">About</a>
+  <a href="../index.html#contact">Contact</a>
+  <a href="index.html" aria-current="page">Blog</a>
+</nav>
+
+<!-- ─── Main content ─────────────────────────────────────────── -->
+<main>
+
+  <!-- ─── Hero ────────────────────────────────────────────── -->
+  <header class="page-hero js-reveal-immediate">
+    <div class="strata-bg"   aria-hidden="true"></div>
+    <div class="strata-lines" aria-hidden="true"></div>
+    <div class="scan-line"   aria-hidden="true"></div>
+
+    <div class="page-hero-inner">
+      <p class="page-label fade-up">Blog</p>
+      <h1 class="fade-up fade-up-delay-1">Striking Gold with Data Management in Mining</h1>
+      <p class="post-byline fade-up fade-up-delay-2">Thomas Lillo &middot; <time datetime="2023-05-08">May 8, 2023</time></p>
+    </div>
+  </header>
+
+  <!-- ─── Article body ────────────────────────────────────── -->
+  <article class="post-body">
+    <p>We've witnessed first-hand how the mining industry relies on accurate and timely information to make informed decisions. Good data management practices are essential for maintaining and improving the efficiency, safety, and profitability of a mine. This is the case for several reasons, three of the main ones are listed below.</p>
+
+    <h2>1. It helps monitor the performance of mining equipment and personnel.</h2>
+    <p>By tracking key performance indicators (KPIs), such as equipment availability, utilization, and productivity, mines can optimize their operations and reduce downtime. Tracking safety metrics such as near-miss incidents, lost time injuries, and equipment failure rates can help identify potential hazards and implement corrective actions to improve safety.</p>
+
+    <h2>2. Good data management is necessary for effective mine planning and scheduling.</h2>
+    <p>Accurate geological and geotechnical data is required to develop efficient mining plans and schedules that maximize resource extraction while minimizing costs. Inaccurate data can lead to poor decision-making, increased risks, and wasted resources.</p>
+
+    <h2>3. Regulatory compliance!</h2>
+    <p>Mines are required to adhere to strict environmental and safety regulations. Proper data management ensures that the necessary information is readily available for compliance reporting and auditing purposes.</p>
+
+    <p>Data-driven decision-making has become a key component of modern mining operations. Advanced analytics and machine learning algorithms can identify patterns and trends in data that might be missed by human analysis. This enables mines to optimize processes, identify inefficiencies, and predict equipment failures before they occur, ultimately resulting in cost savings and improved safety.</p>
+
+    <p><strong>For organizations that are new to data management, engaging external data consultants can be an invaluable asset.</strong> These consultants bring industry-specific knowledge and experience that can help identify opportunities for improvement and implement best practices. They can provide guidance on selecting the right data management software and hardware solutions, as well as assist in developing a comprehensive data management strategy.</p>
+
+    <p>By working with external data consultants, mining organizations can ensure they are maximizing the value of their data while minimizing risks associated with poor data management.</p>
+
+    <p><strong>If you're looking to improve your internal data capabilities, we can help!</strong></p>
+  </article>
+
+  <!-- ─── Closing CTA ─────────────────────────────────────── -->
+  <section class="closing">
+    <div class="closing-inner">
+      <div class="closing-divider fade-up" aria-hidden="true"></div>
+      <a href="../index.html#contact" class="btn btn-primary fade-up fade-up-delay-1">Contact Us</a>
+    </div>
+  </section>
+
+  <a href="index.html" class="post-nav-back">&larr; Back to all posts</a>
+
+</main>
+
+<!-- ─── Footer ───────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="../index.html#contact">Contact Us</a>
+      <a href="../about.html">About Us</a>
+      <a href="#">Our Policies</a>
+    </nav>
+    <div class="footer-bottom">
+      <p>© Woven Mining Inc. 2025</p>
+      <p>Toronto, ON</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

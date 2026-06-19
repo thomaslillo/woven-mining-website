@@ -213,3 +213,49 @@ footer {
   }
   .dropdown-menu { transition: none; }
 }
+
+/* 11. Blog — Shared Article Typography
+   ───────────────────────────────────────────────────────────── */
+.post-byline {
+  font-size: 0.85rem; font-weight: 600; color: var(--muted);
+  margin-top: 1.25rem;
+}
+.post-byline time { color: var(--off-white); }
+
+.post-body {
+  max-width: 680px; margin: 0 auto;
+  padding: 5rem 4vw 1rem;
+}
+.post-body p {
+  font-size: 1.05rem; line-height: 1.8; color: var(--off-white);
+  margin-bottom: 1.5rem;
+}
+.post-body h2 {
+  font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em;
+  color: var(--white); margin: 2.5rem 0 1.25rem;
+}
+.post-body h3 {
+  font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em;
+  color: var(--white); margin: 2rem 0 1rem;
+}
+.post-body ul, .post-body ol {
+  margin: 0 0 1.5rem; padding-left: 1.4rem;
+}
+.post-body li {
+  font-size: 1.05rem; line-height: 1.8; color: var(--off-white);
+  margin-bottom: 0.75rem; padding-left: 0.4rem;
+}
+.post-body li::marker { color: var(--accent-light); font-weight: 700; }
+.post-body blockquote {
+  font-size: 1.1rem; font-weight: 600; font-style: italic;
+  color: var(--white); border-left: 2px solid var(--accent);
+  padding-left: 1.5rem; margin: 2rem 0;
+}
+.post-body strong { color: var(--white); font-weight: 700; }
+
+.post-nav-back {
+  display: block; text-align: center;
+  font-size: 0.9rem; font-weight: 600; color: var(--accent-light);
+  text-decoration: none; padding: 0 4vw 4rem;
+}
+.post-nav-back:hover { color: var(--white); }

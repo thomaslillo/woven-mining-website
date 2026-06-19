@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="View all of our service offerings including our NI 43-101 Data Portal, our Text AI for Mining Engineers tool, and Financial Disclosure Documents Database." />
+  <meta name="description" content="Insights on mining, data, and AI from Woven Mining — coordinate systems, data management, energy consumption, and alternative data in the mining industry." />
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
-  <meta property="og:title"       content="Services — Woven Mining" />
-  <meta property="og:description" content="View all of our service offerings including our NI 43-101 Data Portal, our Text AI for Mining Engineers tool, and Financial Disclosure Documents Database." />
-  <meta property="og:url"         content="https://wovenmining.ca/services" />
+  <meta property="og:title"       content="Blog — Woven Mining" />
+  <meta property="og:description" content="Insights on mining, data, and AI from Woven Mining — coordinate systems, data management, energy consumption, and alternative data in the mining industry." />
+  <meta property="og:url"         content="https://wovenmining.ca/blog" />
   <meta property="og:image"       content="https://wovenmining.ca/horizontal+White.webp" />
 
-  <title>Services — Woven Mining</title>
+  <title>Blog — Woven Mining</title>
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23171210'/><text x='16' y='23' font-family='system-ui' font-size='19' font-weight='900' fill='%23a08c78' text-anchor='middle'>W</text></svg>" />
-  <link rel="canonical" href="https://wovenmining.ca/services" />
+  <link rel="canonical" href="https://wovenmining.ca/blog" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
   <style>
     /* ═══════════════════════════════════════════════════
-       SERVICES PAGE
+       BLOG LISTING PAGE
     ═══════════════════════════════════════════════════ */
 
     /* ── Hero ─────────────────────────────────────────── */
@@ -103,79 +103,50 @@
       max-width: 680px;
     }
 
-    /* ── Services detail grid ─────────────────────────── */
-    .services-detail {
+    /* ── Post list ─────────────────────────────────────── */
+    .blog-list {
       padding: 6rem 4vw 7rem;
     }
 
-    .services-detail-grid {
-      max-width: 760px; margin: 0 auto;
+    .post-grid {
+      max-width: 900px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr; gap: 24px;
     }
 
-    .service-detail-card {
+    .post-card {
       background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: 16px; overflow: hidden;
-      display: flex; flex-direction: column;
       transition: transform 0.25s, box-shadow 0.25s;
     }
-    .service-detail-card:hover {
+    .post-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 24px 64px rgba(0,0,0,0.45);
     }
 
     /* Drill core sample bar at card top */
-    .core-top { height: 10px; display: flex; }
-    .core-seg-h { height: 100%; }
+    .post-card .core-top { height: 10px; display: flex; }
+    .post-card .core-seg-h { height: 100%; }
 
-    .card-body {
+    .post-card .card-body {
       padding: 2.5rem;
-      display: flex; flex-direction: column; gap: 1.1rem;
-      flex: 1;
+      display: flex; flex-direction: column; gap: 0.9rem;
     }
 
-    .service-detail-icon {
-      width: 28px; height: 28px;
-      color: var(--accent-light);
-    }
-    .service-detail-icon svg { width: 100%; height: 100%; display: block; }
-
-    .service-detail-card h3 {
-      font-size: 1.15rem; font-weight: 800;
-      letter-spacing: -0.01em; line-height: 1.3;
+    .post-card h3 {
+      font-size: 1.3rem; font-weight: 800;
+      letter-spacing: -0.015em; line-height: 1.3;
     }
 
-    .card-hook {
-      font-size: 0.95rem; font-weight: 700;
-      color: var(--off-white); line-height: 1.6;
-    }
-
-    .card-text {
-      font-size: 0.9rem; color: var(--muted); line-height: 1.75;
-    }
-    .card-text strong { color: var(--off-white); font-weight: 600; }
-
-    .service-detail-card .btn {
-      margin-top: auto; align-self: flex-start;
-    }
-
-    /* ── Closing CTA ──────────────────────────────────── */
-    .closing {
-      padding: 1rem 4vw 7rem;
-      text-align: center;
-    }
-
-    .closing-inner {
-      max-width: 780px; margin: 0 auto;
-    }
-
-    .closing-divider {
-      width: 48px; height: 2px;
-      background: var(--accent); margin: 0 auto 2.5rem;
+    .post-card .card-text {
+      font-size: 0.95rem; color: var(--muted); line-height: 1.75;
     }
 
     /* ── Responsive ───────────────────────────────────── */
+    @media (min-width: 1024px) {
+      .post-grid { grid-template-columns: 1fr 1fr; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .scan-line { animation: none; }
     }
@@ -192,19 +163,19 @@
     <span></span><span></span><span></span>
   </button>
 
-  <a href="index.html" class="nav-logo">
-    <img src="horizontal+White.webp" alt="Woven Mining" class="nav-logo-img" />
+  <a href="../index.html" class="nav-logo">
+    <img src="../horizontal+White.webp" alt="Woven Mining" class="nav-logo-img" />
   </a>
 
   <div class="nav-spacer" aria-hidden="true"></div>
 </nav>
 
 <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
-  <a href="services.html" aria-current="page">Our Services</a>
+  <a href="../services.html">Our Services</a>
   <a href="#">Data Portal Login</a>
-  <a href="about.html">About</a>
-  <a href="index.html#contact">Contact</a>
-  <a href="blog/index.html">Blog</a>
+  <a href="../about.html">About</a>
+  <a href="../index.html#contact">Contact</a>
+  <a href="index.html" aria-current="page">Blog</a>
 </nav>
 
 <!-- ─── Main content ─────────────────────────────────────────── -->
@@ -217,82 +188,71 @@
     <div class="scan-line"   aria-hidden="true"></div>
 
     <div class="page-hero-inner">
-      <p class="page-label fade-up">Services</p>
-      <h1 class="fade-up fade-up-delay-1">Our Services</h1>
+      <p class="page-label fade-up">Blog</p>
+      <h1 class="fade-up fade-up-delay-1">Insights on Mining, Data &amp; AI</h1>
     </div>
   </header>
 
-  <!-- ─── Services detail ─────────────────────────────────── -->
-  <section class="services-detail" aria-label="Our service offerings">
-    <div class="services-detail-grid">
+  <!-- ─── Post list ───────────────────────────────────────── -->
+  <section class="blog-list" aria-label="Blog posts">
+    <div class="post-grid">
 
-      <article class="service-detail-card fade-up" id="mining-data-analytics-tools">
+      <article class="post-card fade-up">
         <div class="core-top" aria-hidden="true">
           <div class="core-seg-h" style="width:34%;background:hsl(45,55%,42%);"></div>
           <div class="core-seg-h" style="width:30%;background:hsl(23,8%,55%);"></div>
           <div class="core-seg-h" style="width:36%;background:hsl(23,14%,26%);"></div>
         </div>
         <div class="card-body">
-          <div class="service-detail-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="10" cy="10" r="6.5"/>
-              <path d="M19 19l-4.3-4.3"/>
-            </svg>
-          </div>
-          <h3>Mining Data &amp; Analytics Tools</h3>
-          <p class="card-hook">Want to find comparable mining projects by typing in keywords and selecting suggested terms?</p>
-          <p class="card-text">Directly search the content of tens of thousands of documents including <strong>NI 43-101 technical reports</strong>, <strong>Management’s Discussion and Analysis (MD&amp;A)</strong>, and financial disclosure documents. Our Google-like tool features state-of-the-art Natural Language Processing (NLP) algorithms to help you find that next acquisition or untapped market before your competitor does.</p>
+          <h3>With Text Data, Locations are Everything</h3>
+          <p class="post-byline">Thomas Lillo &middot; <time datetime="2024-08-18">Aug 18, 2024</time></p>
+          <p class="card-text">How geographic coordinate systems &mdash; from latitude/longitude to UTM to projected systems &mdash; shape the way we extract location data from text.</p>
+          <a href="locations-are-everything.html" class="featured-card-link">Read more</a>
         </div>
       </article>
 
-      <article class="service-detail-card fade-up fade-up-delay-1" id="data-consulting">
+      <article class="post-card fade-up fade-up-delay-1">
         <div class="core-top" aria-hidden="true">
           <div class="core-seg-h" style="width:28%;background:hsl(210,25%,50%);"></div>
           <div class="core-seg-h" style="width:34%;background:hsl(23,14%,30%);"></div>
           <div class="core-seg-h" style="width:38%;background:hsl(27,50%,38%);"></div>
         </div>
         <div class="card-body">
-          <div class="service-detail-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 5h16v11H9l-4 4V5z"/>
-              <path d="M8 9h8M8 12h5"/>
-            </svg>
-          </div>
-          <h3>Data Consulting</h3>
-          <p class="card-hook">“You create value by trying new ideas in old places, or old ideas in new places.” - Every mining guru ever.</p>
-          <p class="card-text">You don’t need to know what to do with your data. We’ll help you. Our experts can help your organization build skills and systems to utilize your existing structured data or act as your external data team.</p>
+          <h3>Striking Gold with Data Management in Mining</h3>
+          <p class="post-byline">Thomas Lillo &middot; <time datetime="2023-05-08">May 8, 2023</time></p>
+          <p class="card-text">Why disciplined data management is the foundation for safer, more efficient, and more profitable mining operations.</p>
+          <a href="striking-gold-with-data-management-in-mining.html" class="featured-card-link">Read more</a>
         </div>
       </article>
 
-      <article class="service-detail-card fade-up fade-up-delay-2" id="lead-generation">
+      <article class="post-card fade-up fade-up-delay-2">
         <div class="core-top" aria-hidden="true">
           <div class="core-seg-h" style="width:30%;background:hsl(27,68%,42%);"></div>
           <div class="core-seg-h" style="width:32%;background:hsl(23,8%,50%);"></div>
           <div class="core-seg-h" style="width:38%;background:hsl(45,58%,38%);"></div>
         </div>
         <div class="card-body">
-          <div class="service-detail-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="13" r="8"/>
-              <circle cx="11" cy="13" r="4"/>
-              <circle cx="11" cy="13" r="1" fill="currentColor" stroke="none"/>
-              <path d="M16.5 7.5L21 3M21 3h-4M21 3v4"/>
-            </svg>
-          </div>
-          <h3>Data powered lead generation and sales strategy</h3>
-          <p class="card-hook">Pick your best client and we’ll help you find 10 more!</p>
-          <p class="card-text">We use artificial intelligence enhanced tools to make it easier to find new clients in spaces you never considered. Let us help you break out of your old ideas of what markets you can serve!</p>
+          <h3>Energy Consumption at Mines</h3>
+          <p class="post-byline">Thomas Lillo &middot; <time datetime="2023-02-23">Feb 23, 2023</time></p>
+          <p class="card-text">Energy needs vary widely across mine sites &mdash; understanding them is key to cost savings, sustainability, and regulatory compliance.</p>
+          <a href="energy-consumption-at-mines.html" class="featured-card-link">Read more</a>
         </div>
       </article>
 
-    </div>
-  </section>
+      <article class="post-card fade-up fade-up-delay-3">
+        <div class="core-top" aria-hidden="true">
+          <div class="core-seg-h" style="width:22%;background:hsl(130,18%,36%);"></div>
+          <div class="core-seg-h" style="width:30%;background:hsl(23,14%,30%);"></div>
+          <div class="core-seg-h" style="width:48%;background:hsl(23,8%,50%);"></div>
+        </div>
+        <div class="card-body">
+          <h3>A Primer on Alt Data in Mining</h3>
+          <p class="post-byline">Thomas Lillo &middot; <time datetime="2022-09-01">Sep 1, 2022</time></p>
+          <p class="card-text">&ldquo;How can we separate fact from fiction?&rdquo;</p>
+          <a href="alt-data-in-mining.html" class="featured-card-link">Read more</a>
+        </div>
+      </article>
 
-  <!-- ─── Closing CTA ─────────────────────────────────────── -->
-  <section class="closing">
-    <div class="closing-inner">
-      <div class="closing-divider fade-up" aria-hidden="true"></div>
-      <a href="index.html#contact" class="btn btn-primary fade-up fade-up-delay-1">Contact Us</a>
     </div>
   </section>
 
@@ -302,8 +262,8 @@
 <footer>
   <div class="footer-inner">
     <nav class="footer-links" aria-label="Footer navigation">
-      <a href="index.html#contact">Contact Us</a>
-      <a href="about.html">About Us</a>
+      <a href="../index.html#contact">Contact Us</a>
+      <a href="../about.html">About Us</a>
       <a href="#">Our Policies</a>
     </nav>
     <div class="footer-bottom">
@@ -313,6 +273,6 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>

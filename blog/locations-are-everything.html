@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="How geographic coordinate systems — from latitude/longitude to UTM to projected systems — shape the way we extract location data from text." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article" />
+  <meta property="og:title"       content="With Text Data, Locations are Everything — Woven Mining" />
+  <meta property="og:description" content="How geographic coordinate systems — from latitude/longitude to UTM to projected systems — shape the way we extract location data from text." />
+  <meta property="og:url"         content="https://wovenmining.ca/blog/locations-are-everything" />
+  <meta property="og:image"       content="https://wovenmining.ca/horizontal+White.webp" />
+
+  <title>With Text Data, Locations are Everything — Woven Mining</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23171210'/><text x='16' y='23' font-family='system-ui' font-size='19' font-weight='900' fill='%23a08c78' text-anchor='middle'>W</text></svg>" />
+  <link rel="canonical" href="https://wovenmining.ca/blog/locations-are-everything" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    /* ═══════════════════════════════════════════════════
+       BLOG POST PAGE
+    ═══════════════════════════════════════════════════ */
+
+    /* ── Hero ─────────────────────────────────────────── */
+    .page-hero {
+      padding-top: var(--nav-height);
+      min-height: 56vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+
+    /* Geological strata gradient */
+    .strata-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        hsl(23,14%,7%)  0%,
+        hsl(24,16%,9%) 18%,
+        hsl(23,18%,11%) 32%,
+        hsl(25,14%,9%)  50%,
+        hsl(23,16%,13%) 65%,
+        hsl(22,14%,10%) 82%,
+        hsl(23,14%,8%) 100%
+      );
+    }
+
+    /* Rock layer diagonal lines */
+    .strata-lines {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          -9deg,
+          transparent 0, transparent 48px,
+          hsla(26,13%,55%,0.055) 48px, hsla(26,13%,55%,0.055) 50px
+        ),
+        repeating-linear-gradient(
+          -20deg,
+          transparent 0, transparent 100px,
+          hsla(26,13%,55%,0.03) 100px, hsla(26,13%,55%,0.03) 102px
+        );
+    }
+
+    /* Seismic scan-line animation */
+    .scan-line {
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent 0%, hsla(26,18%,65%,0.7) 50%, transparent 100%);
+      animation: scanDown 7s ease-in-out infinite;
+      z-index: 1;
+    }
+    @keyframes scanDown {
+      0%   { top: 12%; opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { top: 88%; opacity: 0; }
+    }
+
+    .page-hero-inner {
+      position: relative; z-index: 3;
+      max-width: var(--max-w); margin: 0 auto; width: 100%;
+      padding: 0 4vw;
+    }
+
+    .page-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent-light);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .page-label::before {
+      content: '';
+      width: 28px; height: 1px; background: var(--accent-light);
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.03em;
+      max-width: 680px;
+    }
+
+    /* ── Closing CTA ──────────────────────────────────── */
+    .closing {
+      padding: 1rem 4vw 5rem;
+      text-align: center;
+    }
+
+    .closing-inner {
+      max-width: 780px; margin: 0 auto;
+    }
+
+    .closing-divider {
+      width: 48px; height: 2px;
+      background: var(--accent); margin: 0 auto 2.5rem;
+    }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .scan-line { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ───────────────────────────────────────────── -->
+<nav class="site-nav">
+  <button class="hamburger" id="hamburger"
+          aria-label="Toggle navigation menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <a href="../index.html" class="nav-logo">
+    <img src="../horizontal+White.webp" alt="Woven Mining" class="nav-logo-img" />
+  </a>
+
+  <div class="nav-spacer" aria-hidden="true"></div>
+</nav>
+
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+  <a href="../services.html">Our Services</a>
+  <a href="#">Data Portal Login</a>
+  <a href="../about.html">About</a>
+  <a href="../index.html#contact">Contact</a>
+  <a href="index.html" aria-current="page">Blog</a>
+</nav>
+
+<!-- ─── Main content ─────────────────────────────────────────── -->
+<main>
+
+  <!-- ─── Hero ────────────────────────────────────────────── -->
+  <header class="page-hero js-reveal-immediate">
+    <div class="strata-bg"   aria-hidden="true"></div>
+    <div class="strata-lines" aria-hidden="true"></div>
+    <div class="scan-line"   aria-hidden="true"></div>
+
+    <div class="page-hero-inner">
+      <p class="page-label fade-up">Blog</p>
+      <h1 class="fade-up fade-up-delay-1">With Text Data, Locations are Everything</h1>
+      <p class="post-byline fade-up fade-up-delay-2">Thomas Lillo &middot; <time datetime="2024-08-18">Aug 18, 2024</time></p>
+    </div>
+  </header>
+
+  <!-- ─── Article body ────────────────────────────────────── -->
+  <article class="post-body">
+    <p>Location is one of the most critical components of any data analysis work, particularly when extracting geographic information from text. The context of where a geological or engineering event takes place is one of the most significant factors in how successful it will likely be. Before you can extract a location reliably, though, you need to understand the format it might be hiding in &mdash; and there are more of these formats than most people expect.</p>
+
+    <p>There are three primary coordinate systems you'll run into when pulling geographic information out of unstructured text.</p>
+
+    <h2>Geographic Coordinate System</h2>
+    <p>The Geographic Coordinate System is the one most people are already familiar with: it uses latitude, longitude, and altitude to specify a position on the Earth's surface. Paris, for example, sits at approximately 48.871728, 2.350468, with the Eiffel Tower reaching about 300 meters in elevation. It's a simple, universal way to describe a point &mdash; but simple doesn't mean it always shows up in text the same way twice.</p>
+
+    <h2>Universal Transverse Mercator (UTM)</h2>
+    <p>The Universal Transverse Mercator (UTM) system divides the Earth into zones and expresses position with meter-based coordinates, which makes it well suited for precise, on-the-ground measurement. Tokyo, for instance, sits at approximately 35.6824&deg; N, 139.7594&deg; E, UTM 31U. That zone designation isn't a footnote &mdash; without it, the easting and northing values on their own are ambiguous and can't be mapped to an actual point on Earth.</p>
+
+    <h2>Projected Coordinate Systems</h2>
+    <p>Projected Coordinate Systems flatten the Earth's curved surface using a projection method such as Mercator or Lambert Conformal Conic. Denver, Colorado is a good example of this approach, sitting at around 39.7392&deg; N, 104.9903&deg; W on a Lambert projection. Different projections trade off accuracy in different ways &mdash; distance, area, or shape &mdash; so knowing which projection produced a coordinate matters just as much as the coordinate itself.</p>
+
+    <p>Understanding the formatting of each system, and the essential pieces of information required for each one to map to a spot on Earth, will help you build better algorithms for extracting this information from text.</p>
+  </article>
+
+  <!-- ─── Closing CTA ─────────────────────────────────────── -->
+  <section class="closing">
+    <div class="closing-inner">
+      <div class="closing-divider fade-up" aria-hidden="true"></div>
+      <a href="../index.html#contact" class="btn btn-primary fade-up fade-up-delay-1">Contact Us</a>
+    </div>
+  </section>
+
+  <a href="index.html" class="post-nav-back">&larr; Back to all posts</a>
+
+</main>
+
+<!-- ─── Footer ───────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="../index.html#contact">Contact Us</a>
+      <a href="../about.html">About Us</a>
+      <a href="#">Our Policies</a>
+    </nav>
+    <div class="footer-bottom">
+      <p>© Woven Mining Inc. 2025</p>
+      <p>Toronto, ON</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

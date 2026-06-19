@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Energy needs vary widely across mine sites — understanding them is key to cost savings, sustainability, and regulatory compliance." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article" />
+  <meta property="og:title"       content="Energy Consumption at Mines — Woven Mining" />
+  <meta property="og:description" content="Energy needs vary widely across mine sites — understanding them is key to cost savings, sustainability, and regulatory compliance." />
+  <meta property="og:url"         content="https://wovenmining.ca/blog/energy-consumption-at-mines" />
+  <meta property="og:image"       content="https://wovenmining.ca/horizontal+White.webp" />
+
+  <title>Energy Consumption at Mines — Woven Mining</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23171210'/><text x='16' y='23' font-family='system-ui' font-size='19' font-weight='900' fill='%23a08c78' text-anchor='middle'>W</text></svg>" />
+  <link rel="canonical" href="https://wovenmining.ca/blog/energy-consumption-at-mines" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    /* ═══════════════════════════════════════════════════
+       BLOG POST PAGE
+    ═══════════════════════════════════════════════════ */
+
+    /* ── Hero ─────────────────────────────────────────── */
+    .page-hero {
+      padding-top: var(--nav-height);
+      min-height: 56vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+
+    /* Geological strata gradient */
+    .strata-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        hsl(23,14%,7%)  0%,
+        hsl(24,16%,9%) 18%,
+        hsl(23,18%,11%) 32%,
+        hsl(25,14%,9%)  50%,
+        hsl(23,16%,13%) 65%,
+        hsl(22,14%,10%) 82%,
+        hsl(23,14%,8%) 100%
+      );
+    }
+
+    /* Rock layer diagonal lines */
+    .strata-lines {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          -9deg,
+          transparent 0, transparent 48px,
+          hsla(26,13%,55%,0.055) 48px, hsla(26,13%,55%,0.055) 50px
+        ),
+        repeating-linear-gradient(
+          -20deg,
+          transparent 0, transparent 100px,
+          hsla(26,13%,55%,0.03) 100px, hsla(26,13%,55%,0.03) 102px
+        );
+    }
+
+    /* Seismic scan-line animation */
+    .scan-line {
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent 0%, hsla(26,18%,65%,0.7) 50%, transparent 100%);
+      animation: scanDown 7s ease-in-out infinite;
+      z-index: 1;
+    }
+    @keyframes scanDown {
+      0%   { top: 12%; opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { top: 88%; opacity: 0; }
+    }
+
+    .page-hero-inner {
+      position: relative; z-index: 3;
+      max-width: var(--max-w); margin: 0 auto; width: 100%;
+      padding: 0 4vw;
+    }
+
+    .page-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent-light);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .page-label::before {
+      content: '';
+      width: 28px; height: 1px; background: var(--accent-light);
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.03em;
+      max-width: 680px;
+    }
+
+    /* ── Closing CTA ──────────────────────────────────── */
+    .closing {
+      padding: 1rem 4vw 5rem;
+      text-align: center;
+    }
+
+    .closing-inner {
+      max-width: 780px; margin: 0 auto;
+    }
+
+    .closing-divider {
+      width: 48px; height: 2px;
+      background: var(--accent); margin: 0 auto 2.5rem;
+    }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .scan-line { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ───────────────────────────────────────────── -->
+<nav class="site-nav">
+  <button class="hamburger" id="hamburger"
+          aria-label="Toggle navigation menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <a href="../index.html" class="nav-logo">
+    <img src="../horizontal+White.webp" alt="Woven Mining" class="nav-logo-img" />
+  </a>
+
+  <div class="nav-spacer" aria-hidden="true"></div>
+</nav>
+
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+  <a href="../services.html">Our Services</a>
+  <a href="#">Data Portal Login</a>
+  <a href="../about.html">About</a>
+  <a href="../index.html#contact">Contact</a>
+  <a href="index.html" aria-current="page">Blog</a>
+</nav>
+
+<!-- ─── Main content ─────────────────────────────────────────── -->
+<main>
+
+  <!-- ─── Hero ────────────────────────────────────────────── -->
+  <header class="page-hero js-reveal-immediate">
+    <div class="strata-bg"   aria-hidden="true"></div>
+    <div class="strata-lines" aria-hidden="true"></div>
+    <div class="scan-line"   aria-hidden="true"></div>
+
+    <div class="page-hero-inner">
+      <p class="page-label fade-up">Blog</p>
+      <h1 class="fade-up fade-up-delay-1">Energy Consumption at Mines</h1>
+      <p class="post-byline fade-up fade-up-delay-2">Thomas Lillo &middot; <time datetime="2023-02-23">Feb 23, 2023</time></p>
+    </div>
+  </header>
+
+  <!-- ─── Article body ────────────────────────────────────── -->
+  <article class="post-body">
+    <p>In mining engineering, one of the critical aspects of the job is to ensure that a mine site is functioning optimally, efficiently, and sustainably. One of the key considerations in this regard is energy use, which is critical to running equipment, powering lighting, and maintaining air quality, among other essential tasks.</p>
+
+    <p>The energy needs of mining operations can vary significantly based on the type of minerals being extracted, the depth of the mine, and the equipment being used. For instance, an underground mine would require more energy for ventilation and lighting than an open-pit mine. Similarly, the energy needs for extracting precious metals like gold and silver are usually higher than those for base metals such as copper and iron.</p>
+
+    <p>Given these differences, it is crucial to understand the different energy needs of different mine sites, even within the same company. Failure to do so can lead to unnecessary costs and inefficiencies, which can ultimately impact the profitability and sustainability of the operation.</p>
+
+    <p>There are several reasons why it is essential to understand the different energy needs of different mine sites:</p>
+
+    <ol>
+      <li><strong>Cost savings:</strong> Mining companies operate on tight budgets and must keep costs under control to remain profitable. Understanding the different energy needs of different mine sites can help identify areas where energy consumption can be reduced, leading to cost savings.</li>
+      <li><strong>Environmental sustainability:</strong> Mining operations are often associated with negative environmental impacts, including greenhouse gas emissions. By understanding the different energy needs of different mine sites, mining companies can identify opportunities to reduce their carbon footprint and promote sustainability.</li>
+      <li><strong>Regulatory compliance:</strong> Mining operations are subject to various environmental regulations, including those related to energy use. Understanding the different energy needs of different mine sites can help ensure that mining companies comply with these regulations and avoid penalties.</li>
+      <li><strong>Operational efficiency:</strong> Understanding the different energy needs of different mine sites can help mining companies optimize their operations. For instance, by using energy-efficient equipment and processes, mining companies can reduce downtime and improve productivity.</li>
+    </ol>
+
+    <p>Understanding the different energy needs of different mine sites is critical for mining companies. By doing so, they can identify opportunities to reduce costs, promote sustainability, comply with regulations, and optimize their operations. As a mining engineer, it is your responsibility to ensure that your company understands the unique energy needs of each mine site and takes steps to address them.</p>
+
+    <p>With Woven Mining's data platform you can assess the energy needs of similar sites around the world, assisting with mine planning and cost predictions.</p>
+  </article>
+
+  <!-- ─── Closing CTA ─────────────────────────────────────── -->
+  <section class="closing">
+    <div class="closing-inner">
+      <div class="closing-divider fade-up" aria-hidden="true"></div>
+      <a href="../index.html#contact" class="btn btn-primary fade-up fade-up-delay-1">Contact Us</a>
+    </div>
+  </section>
+
+  <a href="index.html" class="post-nav-back">&larr; Back to all posts</a>
+
+</main>
+
+<!-- ─── Footer ───────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="../index.html#contact">Contact Us</a>
+      <a href="../about.html">About Us</a>
+      <a href="#">Our Policies</a>
+    </nav>
+    <div class="footer-bottom">
+      <p>© Woven Mining Inc. 2025</p>
+      <p>Toronto, ON</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
