@@ -360,35 +360,19 @@
 <body>
 
 <!-- ─── Navigation ───────────────────────────────────────────── -->
-<nav>
-  <a href="#" class="nav-logo">
-    <img src="horizontal+White.webp" alt="Woven Mining" class="nav-logo-img" />
-  </a>
-
-  <ul class="nav-links" role="list">
-    <li class="dropdown">
-      <a href="#">Services</a>
-      <ul class="dropdown-menu" role="list">
-        <li><a href="#services">Our Services</a></li>
-        <li><a href="#">Data Portal Login</a></li>
-      </ul>
-    </li>
-    <li class="dropdown">
-      <a href="#">About Us</a>
-      <ul class="dropdown-menu" role="list">
-        <li><a href="about.html">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#">Blog</a></li>
-      </ul>
-    </li>
-  </ul>
-
+<nav class="site-nav">
   <button class="hamburger" id="hamburger"
           aria-label="Toggle navigation menu"
           aria-controls="mobile-menu"
           aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
+
+  <a href="#" class="nav-logo">
+    <img src="horizontal+White.webp" alt="Woven Mining" class="nav-logo-img" />
+  </a>
+
+  <div class="nav-spacer" aria-hidden="true"></div>
 </nav>
 
 <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
@@ -411,8 +395,8 @@
       <h1 class="fade-up">
         answer <span>Mining</span> questions faster<br>with Data &amp; AI
       </h1>
-      <p class="fade-up fade-up-delay-1">
-        The world runs on resources — we use artificial intelligence to help miners, suppliers, and investors make smarter decisions
+      <p class="fade-up fade-up-delay-1" style="font-weight:700; color:var(--white); text-transform:capitalize;">
+        The World Runs On Resources — We Use Artificial Intelligence To Help Miners, Suppliers, And Investors Make Smarter Decisions
       </p>
     </div>
 
