@@ -30,6 +30,7 @@ under **Settings → Functions → Bindings** and environment variables:
   limiting across Pages isolates (the function falls back to per-isolate limiting
   if this binding is absent).
 - Set `CONTACT_SENDER` to a verified sender address on `wovenmining.ca`.
+- Optionally set `CONTACT_SENDER_NAME` to customize the sender display name.
 - Set `CONTACT_RECIPIENT` to `thomas@wovenmining.ca` (the function uses this value as
   its destination).
 - Optionally set `CONTACT_ALLOWED_ORIGINS` to a comma-separated list for local

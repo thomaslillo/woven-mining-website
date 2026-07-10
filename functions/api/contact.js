@@ -3,6 +3,7 @@ import { EmailMessage } from "cloudflare:email";
 const WINDOW_MS = 60 * 1000;
 const MAX_REQUESTS = 5;
 const MAX_CACHE_SIZE = 1000;
+const EMAIL_PATTERN = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/;
 const requests = new Map();
 
 function json(body, status = 200) {
@@ -27,6 +28,7 @@ function allowedOrigin(request, env) {
 
 async function rateLimited(request, env) {
   const address = request.headers.get("CF-Connecting-IP") || "unknown";
+  if (address === "unknown") return true;
   const now = Date.now();
 
   if (env.CONTACT_RATE_LIMIT) {
@@ -87,14 +89,14 @@ export async function onRequestPost({ request, env }) {
   const name = clean(payload.name, 100);
   const email = clean(payload.email, 254);
   const message = clean(payload.message, 5000);
-  const emailPattern = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/;
 
-  if (!name || !emailPattern.test(email) || !message) {
+  if (!name || !EMAIL_PATTERN.test(email) || !message) {
     return json({ error: "Please provide a name, valid email, and message." }, 400);
   }
 
   const recipient = env.CONTACT_RECIPIENT;
   const sender = env.CONTACT_SENDER;
+  const senderName = env.CONTACT_SENDER_NAME || "Woven Mining Website";
   if (!env.SEND_EMAIL || !sender || !recipient) {
     console.error("Contact email is not configured");
     return json({ error: "Contact form is temporarily unavailable." }, 503);
@@ -108,7 +110,7 @@ export async function onRequestPost({ request, env }) {
   ].join("\r\n");
   // EmailMessage expects an RFC 5322 message; CRLF and the blank separator are required.
   const raw = [
-    `From: Woven Mining Website <${sender}>`,
+    `From: ${senderName} <${sender}>`,
     `To: ${recipient}`,
     `Reply-To: ${email}`,
     "Subject: New website contact form message",

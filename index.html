@@ -563,7 +563,8 @@
       <p class="section-sub fade-up fade-up-delay-2">
         Have a project in mind or want to learn more? Send us a message and we'll get back to you.
       </p>
-      <form class="contact-form fade-up fade-up-delay-2" id="contact-form" novalidate>
+      <form class="contact-form fade-up fade-up-delay-2" id="contact-form"
+            data-honeypot-field="website" novalidate>
         <!-- Included in the request intentionally so the server can detect bots. -->
         <div class="form-group" aria-hidden="true" style="position:absolute;left:-9999px;">
           <label for="contact-website">Website</label>
@@ -648,6 +649,7 @@
   const contactForm = document.getElementById('contact-form');
 
   const contactStatus = document.getElementById('contact-status');
+  const honeypotField = contactForm.dataset.honeypotField;
 
   contactForm.addEventListener('submit', async e => {
     e.preventDefault();
@@ -660,7 +662,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(Object.fromEntries(
-          [...new FormData(contactForm)].filter(([key]) => key !== 'website'),
+          [...new FormData(contactForm)].filter(([key]) => key !== honeypotField),
         )),
       });
       let result = {};
