@@ -4,6 +4,7 @@ const WINDOW_MS = 60 * 1000;
 const MAX_REQUESTS = 5;
 const MAX_CACHE_SIZE = 1000;
 const EMAIL_PATTERN = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/;
+const PRODUCTION_ORIGINS = ["https://wovenmining.ca", "https://www.wovenmining.ca"];
 const requests = new Map();
 
 function json(body, status = 200, request) {
@@ -21,11 +22,7 @@ function json(body, status = 200, request) {
 function allowedOrigin(request, env) {
   const origin = request.headers.get("Origin");
   const configured = (env.CONTACT_ALLOWED_ORIGINS || "").split(",").filter(Boolean);
-  return [
-    "https://wovenmining.ca",
-    "https://www.wovenmining.ca",
-    ...configured,
-  ].includes(origin);
+  return [...PRODUCTION_ORIGINS, ...configured].includes(origin);
 }
 
 async function rateLimited(request, env) {
@@ -45,13 +42,8 @@ async function rateLimited(request, env) {
 
   if (!previous || now - previous.startedAt >= WINDOW_MS) {
     requests.set(address, { startedAt: now, count: 1 });
-    if (requests.size > MAX_CACHE_SIZE) {
-      for (const [key, entry] of requests) {
-        if (now - entry.startedAt >= WINDOW_MS) {
-          requests.delete(key);
-          if (requests.size <= MAX_CACHE_SIZE) break;
-        }
-      }
+    while (requests.size > MAX_CACHE_SIZE) {
+      requests.delete(requests.keys().next().value);
     }
     return false;
   }
@@ -114,7 +106,7 @@ export async function onRequestPost({ request, env }) {
     "",
     message,
   ].join("\r\n");
-  // EmailMessage expects an RFC 5322 message; CRLF and the blank separator are required.
+  // EmailMessage's third argument is an RFC 5322 message; CRLF and the blank separator are required.
   const raw = [
     `From: ${senderName} <${sender}>`,
     `To: ${recipient}`,
