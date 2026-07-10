@@ -19,13 +19,27 @@ function allowedOrigin(request) {
   return origin === "https://wovenmining.ca" || origin === "https://www.wovenmining.ca";
 }
 
-function rateLimited(request) {
+async function rateLimited(request, env) {
   const address = request.headers.get("CF-Connecting-IP") || "unknown";
   const now = Date.now();
+
+  if (env.CONTACT_RATE_LIMIT) {
+    const key = `contact:${address}`;
+    const stored = await env.CONTACT_RATE_LIMIT.get(key);
+    const count = stored ? Number(stored) + 1 : 1;
+    await env.CONTACT_RATE_LIMIT.put(key, String(count), { expirationTtl: 60 });
+    return count > MAX_REQUESTS;
+  }
+
   const previous = requests.get(address);
 
   if (!previous || now - previous.startedAt >= WINDOW_MS) {
     requests.set(address, { startedAt: now, count: 1 });
+    if (requests.size > 1000) {
+      for (const [key, entry] of requests) {
+        if (now - entry.startedAt >= WINDOW_MS) requests.delete(key);
+      }
+    }
     return false;
   }
 
@@ -43,7 +57,7 @@ export async function onRequestPost({ request, env }) {
     return json({ error: "Request not allowed." }, 403);
   }
 
-  if (rateLimited(request)) {
+  if (await rateLimited(request, env)) {
     console.warn("Contact submission rejected: rate limit exceeded");
     return json({ error: "Too many requests. Please try again later." }, 429);
   }
@@ -67,15 +81,15 @@ export async function onRequestPost({ request, env }) {
   const name = clean(payload.name, 100);
   const email = clean(payload.email, 254);
   const message = clean(payload.message, 5000);
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
 
   if (!name || !emailPattern.test(email) || !message) {
     return json({ error: "Please provide a name, valid email, and message." }, 400);
   }
 
-  const recipient = env.CONTACT_RECIPIENT || "thomas@wovenmining.ca";
+  const recipient = env.CONTACT_RECIPIENT;
   const sender = env.CONTACT_SENDER;
-  if (!env.SEND_EMAIL || !sender) {
+  if (!env.SEND_EMAIL || !sender || !recipient) {
     console.error("Contact email is not configured");
     return json({ error: "Contact form is temporarily unavailable." }, 503);
   }
@@ -86,6 +100,7 @@ export async function onRequestPost({ request, env }) {
     "",
     message,
   ].join("\r\n");
+  // EmailMessage expects an RFC 5322 message; CRLF and the blank separator are required.
   const raw = [
     `From: Woven Mining Website <${sender}>`,
     `To: ${recipient}`,

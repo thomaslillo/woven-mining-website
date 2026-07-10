@@ -26,6 +26,9 @@ The contact form posts to `/api/contact`, which is handled by the Pages Function
 under **Settings → Functions → Bindings** and environment variables:
 
 - Add an **Email Routing** binding named `SEND_EMAIL`.
+- Add a **KV namespace** binding named `CONTACT_RATE_LIMIT` for distributed rate
+  limiting across Pages isolates (the function falls back to per-isolate limiting
+  if this binding is absent).
 - Set `CONTACT_SENDER` to a verified sender address on `wovenmining.ca`.
 - Set `CONTACT_RECIPIENT` to `thomas@wovenmining.ca` (the function uses this value as
   its destination).

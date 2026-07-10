@@ -564,6 +564,7 @@
         Have a project in mind or want to learn more? Send us a message and we'll get back to you.
       </p>
       <form class="contact-form fade-up fade-up-delay-2" id="contact-form" novalidate>
+        <!-- Included in the request intentionally so the server can detect bots. -->
         <div class="form-group" aria-hidden="true" style="position:absolute;left:-9999px;">
           <label for="contact-website">Website</label>
           <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off" />
@@ -660,7 +661,12 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
       });
-      const result = await response.json();
+      let result = {};
+      try {
+        result = await response.json();
+      } catch {
+        result = {};
+      }
       if (!response.ok) throw new Error(result.error || 'Unable to send your message.');
 
       contactForm.innerHTML = `
