@@ -55,6 +55,10 @@ export async function onRequestPost({ request, env }) {
     return json({ error: "Invalid request." }, 400);
   }
 
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    return json({ error: "Invalid request." }, 400);
+  }
+
   if (clean(payload.website, 100)) {
     console.warn("Contact submission rejected: honeypot triggered");
     return json({ error: "Request not allowed." }, 400);
