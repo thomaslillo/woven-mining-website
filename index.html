@@ -649,7 +649,6 @@
   const contactForm = document.getElementById('contact-form');
 
   const contactStatus = document.getElementById('contact-status');
-  const honeypotField = contactForm.dataset.honeypotField;
 
   contactForm.addEventListener('submit', async e => {
     e.preventDefault();
@@ -661,9 +660,7 @@
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(
-          [...new FormData(contactForm)].filter(([key]) => key !== honeypotField),
-        )),
+        body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
       });
       let result = {};
       try {

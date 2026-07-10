@@ -6,12 +6,14 @@ const MAX_CACHE_SIZE = 1000;
 const EMAIL_PATTERN = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/;
 const requests = new Map();
 
-function json(body, status = 200) {
+function json(body, status = 200, request) {
+  const origin = request?.headers.get("Origin");
   return new Response(JSON.stringify(body), {
     status,
     headers: {
       "content-type": "application/json",
       "cache-control": "no-store",
+      ...(origin ? { "access-control-allow-origin": origin } : {}),
     },
   });
 }
@@ -45,7 +47,10 @@ async function rateLimited(request, env) {
     requests.set(address, { startedAt: now, count: 1 });
     if (requests.size > MAX_CACHE_SIZE) {
       for (const [key, entry] of requests) {
-        if (now - entry.startedAt >= WINDOW_MS) requests.delete(key);
+        if (now - entry.startedAt >= WINDOW_MS) {
+          requests.delete(key);
+          if (requests.size <= MAX_CACHE_SIZE) break;
+        }
       }
     }
     return false;
@@ -62,28 +67,29 @@ function clean(value, maximum) {
 export async function onRequestPost({ request, env }) {
   if (!allowedOrigin(request, env)) {
     console.warn("Contact submission rejected: invalid origin");
-    return json({ error: "Request not allowed." }, 403);
+    return json({ error: "Request not allowed." }, 403, request);
   }
 
   if (await rateLimited(request, env)) {
     console.warn("Contact submission rejected: rate limit exceeded");
-    return json({ error: "Too many requests. Please try again later." }, 429);
+    return json({ error: "Too many requests. Please try again later." }, 429, request);
   }
 
   let payload;
   try {
     payload = await request.json();
   } catch {
-    return json({ error: "Invalid request." }, 400);
+    return json({ error: "Invalid request." }, 400, request);
   }
 
   if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
-    return json({ error: "Invalid request." }, 400);
+    return json({ error: "Invalid request." }, 400, request);
   }
 
+  // Keep this field name in sync with data-honeypot-field in index.html.
   if (clean(payload.website, 100)) {
     console.warn("Contact submission rejected: honeypot triggered");
-    return json({ error: "Request not allowed." }, 400);
+    return json({ error: "Request not allowed." }, 400, request);
   }
 
   const name = clean(payload.name, 100);
@@ -91,7 +97,7 @@ export async function onRequestPost({ request, env }) {
   const message = clean(payload.message, 5000);
 
   if (!name || !EMAIL_PATTERN.test(email) || !message) {
-    return json({ error: "Please provide a name, valid email, and message." }, 400);
+    return json({ error: "Please provide a name, valid email, and message." }, 400, request);
   }
 
   const recipient = env.CONTACT_RECIPIENT;
@@ -99,7 +105,7 @@ export async function onRequestPost({ request, env }) {
   const senderName = env.CONTACT_SENDER_NAME || "Woven Mining Website";
   if (!env.SEND_EMAIL || !sender || !recipient) {
     console.error("Contact email is not configured");
-    return json({ error: "Contact form is temporarily unavailable." }, 503);
+    return json({ error: "Contact form is temporarily unavailable." }, 503, request);
   }
 
   const body = [
@@ -122,10 +128,10 @@ export async function onRequestPost({ request, env }) {
   try {
     await env.SEND_EMAIL.send(new EmailMessage(sender, recipient, raw));
     console.info("Contact submission email sent");
-    return json({ ok: true });
+    return json({ ok: true }, 200, request);
   } catch (error) {
     console.error("Contact submission email failed", error);
-    return json({ error: "Unable to send your message right now." }, 502);
+    return json({ error: "Unable to send your message right now." }, 502, request);
   }
 }
 
