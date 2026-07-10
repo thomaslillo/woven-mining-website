@@ -2,6 +2,7 @@ import { EmailMessage } from "cloudflare:email";
 
 const WINDOW_MS = 60 * 1000;
 const MAX_REQUESTS = 5;
+const MAX_CACHE_SIZE = 1000;
 const requests = new Map();
 
 function json(body, status = 200) {
@@ -14,9 +15,14 @@ function json(body, status = 200) {
   });
 }
 
-function allowedOrigin(request) {
+function allowedOrigin(request, env) {
   const origin = request.headers.get("Origin");
-  return origin === "https://wovenmining.ca" || origin === "https://www.wovenmining.ca";
+  const configured = (env.CONTACT_ALLOWED_ORIGINS || "").split(",").filter(Boolean);
+  return [
+    "https://wovenmining.ca",
+    "https://www.wovenmining.ca",
+    ...configured,
+  ].includes(origin);
 }
 
 async function rateLimited(request, env) {
@@ -35,7 +41,7 @@ async function rateLimited(request, env) {
 
   if (!previous || now - previous.startedAt >= WINDOW_MS) {
     requests.set(address, { startedAt: now, count: 1 });
-    if (requests.size > 1000) {
+    if (requests.size > MAX_CACHE_SIZE) {
       for (const [key, entry] of requests) {
         if (now - entry.startedAt >= WINDOW_MS) requests.delete(key);
       }
@@ -52,7 +58,7 @@ function clean(value, maximum) {
 }
 
 export async function onRequestPost({ request, env }) {
-  if (!allowedOrigin(request)) {
+  if (!allowedOrigin(request, env)) {
     console.warn("Contact submission rejected: invalid origin");
     return json({ error: "Request not allowed." }, 403);
   }
@@ -81,7 +87,7 @@ export async function onRequestPost({ request, env }) {
   const name = clean(payload.name, 100);
   const email = clean(payload.email, 254);
   const message = clean(payload.message, 5000);
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+  const emailPattern = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/;
 
   if (!name || !emailPattern.test(email) || !message) {
     return json({ error: "Please provide a name, valid email, and message." }, 400);
@@ -121,8 +127,8 @@ export async function onRequestPost({ request, env }) {
   }
 }
 
-export function onRequestOptions({ request }) {
-  if (!allowedOrigin(request)) return new Response(null, { status: 403 });
+export function onRequestOptions({ request, env }) {
+  if (!allowedOrigin(request, env)) return new Response(null, { status: 403 });
   return new Response(null, {
     headers: {
       "access-control-allow-origin": request.headers.get("Origin"),

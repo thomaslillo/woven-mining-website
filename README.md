@@ -32,6 +32,8 @@ under **Settings → Functions → Bindings** and environment variables:
 - Set `CONTACT_SENDER` to a verified sender address on `wovenmining.ca`.
 - Set `CONTACT_RECIPIENT` to `thomas@wovenmining.ca` (the function uses this value as
   its destination).
+- Optionally set `CONTACT_ALLOWED_ORIGINS` to a comma-separated list for local
+  testing, such as `http://localhost:8788`; production origins are always allowed.
 
 Email Routing must be enabled for the domain, and the sender/domain must satisfy
 Cloudflare's email sending requirements. Deploy the project through the existing
